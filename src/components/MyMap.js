@@ -22,7 +22,6 @@ export const MyMap = compose(
     defaultCenter={{ lat: 43.591236, lng: 3.258363 }}
     defaultOptions={{ styles: MapStyle}}
   >
-    {props.isMarkerShown && <Marker position={props.markerPosition}  />}
     {
       props.placesOfInterest.map(point => (
         <Marker

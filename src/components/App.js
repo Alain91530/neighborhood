@@ -7,30 +7,16 @@ import Header from './Header';
 import '../styles/App.css';
 
 
+
 class App extends Component {
 
   state = {
-    isMarkerShown: false,
+    pointsOfInterest : []
   }
 
   componentDidMount() {
-    this.delayedShowMarker();
-  }
-
-  delayedShowMarker = () => {
-    setTimeout(() => {
-      this.setState({ isMarkerShown: true });
-    }, 3000);
-  }
-
-  handleMarkerClick = () => {
-    this.setState({ isMarkerShown: false });
-    this.delayedShowMarker();
-  }
-
-  render() {
-    let pointsOfInterest = [
-      { title: 'Cathedrale Saint-Etienne Agde', position: {lng: 3.4692, lat : 43.3139 }},
+    let myPlaces= 
+    [ { title: 'Cathedrale Saint-Etienne Agde', position: {lng: 3.4692, lat : 43.3139 }},
       { title: 'Chateau Laurens', position: {lng: 3.4716, lat : 43.3179 }},
       { title: 'Ecluse Ronde Agde' , position: {lng: 3.4674, lat : 43.3202 }},
       { title: 'Eglise Saint-Andre Agde',  position: {lng: 3.47, lat : 43.3117 }},
@@ -390,14 +376,17 @@ class App extends Component {
       { title: 'Manufacture Villeneuvette', position: { lng: 3.4004,lat: 43.6102 }},
       { title: 'Oppidum Ambrussum', position: { lng: 4.1501,lat: 43.7156 }},
       { title: 'Abbaye Valmagne', position: { lng: 3.5623,lat: 43.4869 }},
-      { title: 'Chateau Cambous', position: { lng: 3.7256,lat: 43.7542 }}
-    ];
+      { title: 'Chateau Cambous', position: { lng: 3.7256,lat: 43.7542 }} ];
 
-    /* for (let i=0; i<PointsOfInterest.length; i++) {
-      PointsOfInterest[i].id = {id: i+''};
-      console.log(PointsOfInterest[i])
-    }*/
-    const markerPosition={ lat:43.476283, lng:3.277395 };
+    for (let i=0; i<myPlaces.length; i++) {
+      myPlaces[i].id=i;
+    }
+    this.setState({pointsOfInterest: myPlaces});
+  }
+
+  render() {
+    const pointsOfInterest = this.state.pointsOfInterest;
+
     return (
 
       <div>
@@ -407,9 +396,6 @@ class App extends Component {
 
           <div className="map-container">
             <MyMap
-              isMarkerShown={ this.state.isMarkerShown}
-              onMarkerClick={ this.handleMarkerClick}
-              markerPosition={markerPosition}
               placesOfInterest={pointsOfInterest}
             />
           </div>
