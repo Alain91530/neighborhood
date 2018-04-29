@@ -2,6 +2,8 @@
 
 import React, { Component } from 'react'; // eslint-disable-line no-unused-vars
 import {MyMap} from './MyMap';
+import SideBar from './SideBar';
+import Header from './Header';
 import '../styles/App.css';
 
 
@@ -27,7 +29,7 @@ class App extends Component {
   }
 
   render() {
-    const PointsOfInterest = [
+    let PointsOfInterest = [
       { title: 'Cathedrale Saint-Etienne Agde ', position: {lng: 3.4692, lat : 43.3139 }},
       { title: 'Chateau Laurens ', position: {lng: 3.4716, lat : 43.3179 }},
       { title: 'Ecluse Ronde Agde' , position: {lng: 3.4674, lat : 43.3202 }},
@@ -217,14 +219,29 @@ class App extends Component {
       { title: ' Maison Philippe Bel Lunel ' , position: {lng: 4.1344, lat : 43.6743 }},
       { title: ' Chateau Lunel-Viel ' , position: {lng: 4.092962, lat : 43.679442 }}
     ];
+
+    /* for (let i=0; i<PointsOfInterest.length; i++) {
+      PointsOfInterest[i].id = {id: i+''};
+      console.log(PointsOfInterest[i])
+    }*/
     const markerPosition={ lat:43.476283, lng:3.277395 };
     return (
-      <MyMap
-        isMarkerShown={ this.state.isMarkerShown}
-        onMarkerClick={ this.handleMarkerClick}
-        markerPosition={markerPosition}
-        placesOfInterest={PointsOfInterest}
-      />
+
+      <div>
+        <Header />
+        <div className="container">
+        <SideBar />
+
+          <div className="map-container">
+            <MyMap
+              isMarkerShown={ this.state.isMarkerShown}
+              onMarkerClick={ this.handleMarkerClick}
+              markerPosition={markerPosition}
+              placesOfInterest={PointsOfInterest}
+            />
+          </div>
+        </div>
+      </div>
     );
   }
 }
