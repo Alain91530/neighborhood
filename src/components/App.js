@@ -37,8 +37,9 @@ class App extends Component {
       <div>
         <Header />
         <div className="container">
-          <SideBar />
-
+          <SideBar
+            placesToList={pointsOfInterest}
+          />
           <div className="map-container">
             <MyMap
               placesOfInterest={pointsOfInterest}
