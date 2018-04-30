@@ -71,7 +71,7 @@ class App extends Component {
           />
           <div className="map-container">
             <MyMap
-              placesOfInterest={ pointsOfInterest }
+              placesOfInterest={ searchedPoints }
             />
           </div>
         </div>
