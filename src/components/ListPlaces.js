@@ -18,7 +18,7 @@ class ListPlaces extends Component {
       <ul className="list-of-places">
         {placesListed.map(place => (
           <li key= {place.id} className="place-listed">
-            <p>{place.title}</p>
+            <p>{place.translatedTitle}</p>
           </li>
         ))}
       </ul>

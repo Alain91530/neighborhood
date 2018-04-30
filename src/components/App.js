@@ -8,6 +8,7 @@ import SideBar from './SideBar';                  // eslint-disable-line no-unus
 import Header from './Header';                    // eslint-disable-line no-unused-vars
 
 import Places from '../data/places';
+import Translation from '../data/translation';
 
 import '../styles/App.css';
 
@@ -20,14 +21,21 @@ class App extends Component {
   }
 
   componentDidMount() {
-    // Get the json file containing the places of interest
-    // Source of data wikipedia kml file converted to json
+    // Get the json files containing the places of interest
+    // and translation then construct one array with translation
+    // French title is keeped to search wikimedia.
+    // Source of data wikipedia kml file created with open data
+    // project of french government mérimée(historical monuments of
+    // France). Json convetion and translation by Alain Cadenat
+
     let myPlaces= Places;
-    // Add an id to be used as a key by react to avoid warning
-    // when using .map.
-    for (let i=0; i<myPlaces.length; i++) {
-      myPlaces[i].id=i;
+    const translatedPlaces= Translation;
+    console.log(translatedPlaces)
+    for (let i=0;i<myPlaces.length; i++) {
+      myPlaces[i].translatedTitle = translatedPlaces[i].translatedTitle;
+      console.log(myPlaces[i])
     }
+
     // Update the state to render the markers
     this.setState({pointsOfInterest: myPlaces});
     this.setState({searchedPoints: myPlaces});
@@ -45,7 +53,7 @@ class App extends Component {
     this.setState({query});
     if ( query ) {
       const match = new RegExp( escapeRegExp( query ), 'i' );
-      searchedPoints = pointsOfInterest.filter( point => match.test( point.title ) );
+      searchedPoints = pointsOfInterest.filter( point => match.test( point.translatedTitle ) );
     }
     else {
       searchedPoints = pointsOfInterest;
