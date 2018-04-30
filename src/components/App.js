@@ -1,11 +1,15 @@
 
 
-import React, { Component } from 'react'; // eslint-disable-line no-unused-vars
-import {MyMap} from './MyMap';
-import SideBar from './SideBar';
-import Header from './Header';
-import '../styles/App.css';
+import React, { Component } from 'react';         // eslint-disable-line no-unused-vars
+import escapeRegExp from 'escape-string-regexp';
+
+import {MyMap} from './MyMap';                    // eslint-disable-line no-unused-vars
+import SideBar from './SideBar';                  // eslint-disable-line no-unused-vars
+import Header from './Header';                    // eslint-disable-line no-unused-vars
+
 import Places from '../data/places';
+
+import '../styles/App.css';
 
 
 
@@ -13,7 +17,9 @@ import Places from '../data/places';
 class App extends Component {
 
   state = {
-    pointsOfInterest : []
+    pointsOfInterest : [],
+    searchedPoints:[],
+    query : ''
   }
 
   componentDidMount() {
@@ -27,10 +33,35 @@ class App extends Component {
     }
     // Update the state to render the markers
     this.setState({pointsOfInterest: myPlaces});
+    this.setState({searchedPoints: myPlaces});
   }
+
+  updateQuery = (query) => {
+    let searchedPoints = this.state.searchedPoints;
+    const pointsOfInterest = this.state.pointsOfInterest;
+    /*
+    * No need to search for places if query is empty (after backspacing or
+     * deleting), but we need to set the new state
+     */
+
+    // Update the query
+    this.setState({query});
+    if ( query ) {
+      const match = new RegExp( escapeRegExp( query ), 'i' );
+      searchedPoints = pointsOfInterest.filter( point => match.test( point.title ) );
+    }
+    else {
+      searchedPoints = pointsOfInterest;
+    }
+
+    this.setState({searchedPoints});
+
+  }
+
   render() {
 
     const pointsOfInterest = this.state.pointsOfInterest;
+    const searchedPoints = this.state.searchedPoints;
 
     return (
 
@@ -38,7 +69,7 @@ class App extends Component {
         <Header />
         <div className="container">
           <SideBar
-            placesToList={pointsOfInterest}
+            placesToList={searchedPoints}
           />
           <div className="map-container">
             <MyMap
