@@ -30,10 +30,8 @@ class App extends Component {
 
     let myPlaces= Places;
     const translatedPlaces= Translation;
-    console.log(translatedPlaces)
     for (let i=0;i<myPlaces.length; i++) {
       myPlaces[i].translatedTitle = translatedPlaces[i].translatedTitle;
-      console.log(myPlaces[i])
     }
 
     // Update the state to render the markers
