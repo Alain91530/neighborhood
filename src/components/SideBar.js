@@ -10,9 +10,12 @@ class SideBar extends Component {
     return(
       <aside className= "sidebar">
         <h2>Menu</h2>
-        <SearchPlace />
+        <SearchPlace 
+        updateQuery = { this.props.updateQuery }
+        />
         <ListPlaces
-        places= {places}
+          places= {places}
+
         />
       </aside>
     );

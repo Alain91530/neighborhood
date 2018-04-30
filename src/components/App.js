@@ -11,9 +11,6 @@ import Places from '../data/places';
 
 import '../styles/App.css';
 
-
-
-
 class App extends Component {
 
   state = {
@@ -69,11 +66,12 @@ class App extends Component {
         <Header />
         <div className="container">
           <SideBar
-            placesToList={searchedPoints}
+            placesToList = { searchedPoints }
+            updateQuery = { this.updateQuery }
           />
           <div className="map-container">
             <MyMap
-              placesOfInterest={pointsOfInterest}
+              placesOfInterest={ pointsOfInterest }
             />
           </div>
         </div>

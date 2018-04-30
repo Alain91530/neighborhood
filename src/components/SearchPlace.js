@@ -15,6 +15,7 @@ class SearchPlace extends Component {
           type='text'
           placeholder='Search for a place'
           value={query}
+          onChange = {(event) => this.props.updateQuery(event.target.value)}
         />
       </div>
       );
