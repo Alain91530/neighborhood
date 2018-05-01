@@ -30,10 +30,11 @@ export const MyMap = compose(
         animation={ window.google.maps.Animation.DROP}
         icon='icons/monument-historique.png'
         >
-        
         <InfoBox>
-          <div className="info-point">
+          <div className="info-point" tabIndex='0'>
+          <div >
             <p>{ point.translatedTitle }</p>
+          </div>
           </div>
         </InfoBox>
       </Marker>

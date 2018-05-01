@@ -18,6 +18,14 @@
   text-align: center;
 }
 
+.info-point {
+  background-color:rgb(27, 74, 128);
+  border-style: solid;
+  color: tan;
+  padding: 5px;
+  width: 120px !important;
+}
+
 .header-title {
   margin: 0;
 }
