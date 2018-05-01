@@ -35,8 +35,8 @@ class App extends Component {
     }
 
     // Update the state to render the markers
-    this.setState({pointsOfInterest: myPlaces});
-    this.setState({searchedPoints: myPlaces});
+    this.setState({pointsOfInterest: [myPlaces[0]]});
+    this.setState({searchedPoints: [myPlaces[0]]});
   }
 
   updateQuery = (query) => {
@@ -63,7 +63,6 @@ class App extends Component {
 
   render() {
 
-    const pointsOfInterest = this.state.pointsOfInterest;
     const searchedPoints = this.state.searchedPoints;
 
     return (
