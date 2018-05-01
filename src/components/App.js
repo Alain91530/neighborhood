@@ -44,7 +44,9 @@ class App extends Component {
 
   markerClicked=(point) => {
     console.log(point);
-    this.setState({selectedId: point.id})
+    this.setState({mapCenter: point.position});
+    this.setState({zoom: 15});
+    this.setState({selectedId: point.id});
   }
 
   updateQuery = (query) => {

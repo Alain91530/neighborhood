@@ -20,8 +20,8 @@ export const MyMap = compose(
 console.log(props)
 return (
   <GoogleMap
-    defaultZoom={props.zoom}
-    defaultCenter={props.mapCenter}
+    zoom={props.zoom}
+    center={props.mapCenter}
     defaultOptions={{ styles: MapStyle}}
   > { props.placesOfInterest.map(point => (
       <Marker
