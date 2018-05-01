@@ -28,7 +28,7 @@ export const MyMap = compose(
         key={point.id}
         position={point.position}
         animation={ window.google.maps.Animation.DROP}
-        icon='https://png.icons8.com/color/2x/leaving-geo-fence.png'
+        icon='icons/monument-historique.png'
         >
         
         <InfoBox>
