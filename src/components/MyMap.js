@@ -5,8 +5,6 @@ import { InfoBox } from 'react-google-maps/lib/components/addons/InfoBox'
 import MapStyle from '../data/MapStyle';
 import '../styles/App.css';
 
-
-
 export const MyMap = compose(
 
   withProps({
@@ -22,8 +20,8 @@ export const MyMap = compose(
 console.log(props)
 return (
   <GoogleMap
-    defaultZoom={9}
-    defaultCenter={{ lat: 43.591236, lng: 3.258363 }}
+    defaultZoom={props.zoom}
+    defaultCenter={props.mapCenter}
     defaultOptions={{ styles: MapStyle}}
   > { props.placesOfInterest.map(point => (
       <Marker
@@ -31,6 +29,7 @@ return (
         position={point.position}
         animation={ window.google.maps.Animation.DROP}
         icon='icons/monument-historique.png'
+        onClick={ ()=> props.markerClicked(point)}
       >
         {(point.id===props.selectedId) &&  (
           <InfoBox>

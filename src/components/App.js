@@ -15,10 +15,12 @@ import '../styles/App.css';
 class App extends Component {
 
   state = {
+    mapCenter: { lat: 43.591236, lng: 3.258363 },
+    zoom: 9,
     pointsOfInterest : [],
     searchedPoints:[],
     query : '',
-    selectedId: 0
+    selectedId: -1
   }
 
   componentDidMount() {
@@ -38,6 +40,11 @@ class App extends Component {
     // Update the state to render the markers
     this.setState({pointsOfInterest: myPlaces});
     this.setState({searchedPoints: myPlaces});
+  }
+
+  markerClicked=(point) => {
+    console.log(point);
+    this.setState({selectedId: point.id})
   }
 
   updateQuery = (query) => {
@@ -66,6 +73,8 @@ class App extends Component {
 
     const searchedPoints = this.state.searchedPoints;
     const selectedId = this.state.selectedId;
+    const mapCenter = this.state.mapCenter;
+    const zoom= this.state.zoom;
 
     return (
 
@@ -78,8 +87,11 @@ class App extends Component {
           />
           <div className="map-container">
             <MyMap
+              mapCenter = { mapCenter }
+              zoom = { zoom }
               placesOfInterest={ searchedPoints }
               selectedId={ selectedId }
+              markerClicked={this.markerClicked}
             />
           </div>
         </div>
