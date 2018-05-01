@@ -17,7 +17,8 @@ class App extends Component {
   state = {
     pointsOfInterest : [],
     searchedPoints:[],
-    query : ''
+    query : '',
+    selectedId: 0
   }
 
   componentDidMount() {
@@ -35,8 +36,8 @@ class App extends Component {
     }
 
     // Update the state to render the markers
-    this.setState({pointsOfInterest: [myPlaces[0]]});
-    this.setState({searchedPoints: [myPlaces[0]]});
+    this.setState({pointsOfInterest: myPlaces});
+    this.setState({searchedPoints: myPlaces});
   }
 
   updateQuery = (query) => {
@@ -64,6 +65,7 @@ class App extends Component {
   render() {
 
     const searchedPoints = this.state.searchedPoints;
+    const selectedId = this.state.selectedId;
 
     return (
 
@@ -77,6 +79,7 @@ class App extends Component {
           <div className="map-container">
             <MyMap
               placesOfInterest={ searchedPoints }
+              selectedId={ selectedId }
             />
           </div>
         </div>

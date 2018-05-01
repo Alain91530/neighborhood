@@ -18,7 +18,9 @@ export const MyMap = compose(
   withScriptjs,
   withGoogleMap,
 
-)((props) => (
+)((props) => {
+console.log(props)
+return (
   <GoogleMap
     defaultZoom={9}
     defaultCenter={{ lat: 43.591236, lng: 3.258363 }}
@@ -29,18 +31,20 @@ export const MyMap = compose(
         position={point.position}
         animation={ window.google.maps.Animation.DROP}
         icon='icons/monument-historique.png'
-        >
-        <InfoBox>
-          <div className="info-point" tabIndex='0'>
-          <div >
-            <p>{ point.translatedTitle }</p>
-          </div>
-          </div>
-        </InfoBox>
+      >
+        {(point.id===props.selectedId) &&  (
+          <InfoBox>
+            <div className="info-point" tabIndex='0'>
+              <div className="info-title" >
+                <p>{ point.translatedTitle }</p>
+              </div>
+            </div>
+          </InfoBox>)}
+
       </Marker>
     ))
     }
   </GoogleMap>
-));
+)});
 
 
