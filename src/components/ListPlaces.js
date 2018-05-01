@@ -17,7 +17,10 @@ class ListPlaces extends Component {
     return (
       <ul className="list-of-places">
         {placesListed.map(place => (
-          <li key= {place.id} className="place-listed">
+          <li
+            key= {place.id} className="place-listed"
+            onClick = { () => this.props.listElementClicked(place)}
+          >
             <p>{place.translatedTitle}</p>
           </li>
         ))}

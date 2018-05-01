@@ -6,6 +6,7 @@ import escapeRegExp from 'escape-string-regexp';
 import {MyMap} from './MyMap';                    // eslint-disable-line no-unused-vars
 import SideBar from './SideBar';                  // eslint-disable-line no-unused-vars
 import Header from './Header';                    // eslint-disable-line no-unused-vars
+import Footer from './Footer';                    // eslint-disable-line no-unused-vars
 
 import Places from '../data/places';
 import Translation from '../data/translation';
@@ -102,6 +103,7 @@ class App extends Component {
           <SideBar
             placesToList = { searchedPoints }
             updateQuery = { this.updateQuery }
+            listElementClicked = { this.markerClicked }
           />
           <div className="map-container">
             <MyMap
@@ -116,6 +118,7 @@ class App extends Component {
               infoBoxClosed={this.infoBoxClosed}
             />
           </div>
+          <Footer />
         </div>
       </div>
     );
