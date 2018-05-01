@@ -29,10 +29,11 @@ return (
         position={point.position}
         animation={ window.google.maps.Animation.DROP}
         icon='icons/monument-historique.png'
-        onClick={ ()=> props.markerClicked(point)}
+        onClick={ () => props.markerClicked(point)}
       >
         {(point.id===props.selectedId) &&  (
-          <InfoBox>
+          <InfoBox
+          onCloseClick={ () => props.infoBoxClosed()} >
             <div className="info-point" tabIndex='0'>
               <div className="info-title" >
                 <p>{ point.translatedTitle }</p>

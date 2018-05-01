@@ -42,6 +42,13 @@ class App extends Component {
     this.setState({searchedPoints: myPlaces});
   }
 
+  infoBoxClosed=() => {
+    console.log('box closed')
+    this.setState({mapCenter: { lat: 43.591236, lng: 3.258363 }});
+    this.setState({zoom: 9});
+    this.setState({selectedId: -1});
+  }
+
   markerClicked=(point) => {
     console.log(point);
     this.setState({mapCenter: point.position});
@@ -94,6 +101,7 @@ class App extends Component {
               placesOfInterest={ searchedPoints }
               selectedId={ selectedId }
               markerClicked={this.markerClicked}
+              infoBoxClosed={this.infoBoxClosed}
             />
           </div>
         </div>
