@@ -20,7 +20,8 @@ class App extends Component {
     pointsOfInterest : [],
     searchedPoints:[],
     query : '',
-    selectedId: -1
+    selectedId: -1,
+    mouseOverId: -1
   }
 
   componentDidMount() {
@@ -53,7 +54,16 @@ class App extends Component {
     console.log(point);
     this.setState({mapCenter: point.position});
     this.setState({zoom: 15});
+    this.setState({mouseOverId: -1})
     this.setState({selectedId: point.id});
+  }
+
+  markerOut=() => {
+    this.setState({mouseOverId: -1});
+  }
+
+  markerOver=(point) => {
+    this.setState({mouseOverId: point.id});
   }
 
   updateQuery = (query) => {
@@ -82,6 +92,7 @@ class App extends Component {
 
     const searchedPoints = this.state.searchedPoints;
     const selectedId = this.state.selectedId;
+    const mouseOverId = this.state.mouseOverId;
     const mapCenter = this.state.mapCenter;
     const zoom= this.state.zoom;
 
@@ -100,7 +111,10 @@ class App extends Component {
               zoom = { zoom }
               placesOfInterest={ searchedPoints }
               selectedId={ selectedId }
+              mouseOverId = { mouseOverId}
               markerClicked={this.markerClicked}
+              markerOver={this.markerOver}
+              markerOut={this.markerOut}
               infoBoxClosed={this.infoBoxClosed}
             />
           </div>

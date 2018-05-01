@@ -17,38 +17,40 @@ export const MyMap = compose(
   withGoogleMap,
 
 )((props) => {
-console.log(props)
-return (
-  <GoogleMap
-    zoom={props.zoom}
-    center={props.mapCenter}
-    defaultOptions={{ styles: MapStyle}}
-  > { props.placesOfInterest.map(point => {
-    let markerUrl='icons/monument-historique.png';
-    (point.id===props.selectedId) ? markerUrl='icons/monument-historique-selected.png'
-    : markerUrl='icons/monument-historique.png';
-    return (
-      <Marker
-        key={point.id}
-        position={point.position}
-        animation={ window.google.maps.Animation.DROP}
-        icon={markerUrl}
-        onClick={ () => props.markerClicked(point)}
-      >
-        {(point.id===props.selectedId) &&  (
-          <InfoBox
-          onCloseClick={ () => props.infoBoxClosed()} >
-            <div className="info-point" tabIndex='0'>
-              <div className="info-title" >
-                <p>{ point.translatedTitle }</p>
-              </div>
-            </div>
-          </InfoBox>)}
+  console.log(props)
+  return (
+    <GoogleMap
+      zoom={props.zoom}
+      center={props.mapCenter}
+      defaultOptions={{ styles: MapStyle}}
+    > { props.placesOfInterest.map(point => {
+        let markerUrl='icons/monument-historique.png';
+        if (point.id===props.selectedId) markerUrl='icons/monument-historique-selected.png';
+        if (point.id===props.mouseOverId)  markerUrl='icons/monument-historique-hover.png';
+        return (
+          <Marker
+            key={point.id}
+            position = {point.position}
+            animation = { window.google.maps.Animation.DROP}
+            icon = {markerUrl}
+            onClick = { () => props.markerClicked(point)}
+            onMouseOver = { () => props.markerOver(point)}
+            onMouseOut = { () => props.markerOut()}
+          >
+            {(point.id===props.selectedId) &&  (
+              <InfoBox
+                onCloseClick={ () => props.infoBoxClosed()} >
+                <div className="info-point" tabIndex='0'>
+                  <div className="info-title" >
+                    <p>{ point.translatedTitle }</p>
+                  </div>
+                </div>
+              </InfoBox>)}
 
-      </Marker>
-    )})
-    }
-  </GoogleMap>
-)});
+          </Marker>
+        )})
+      }
+    </GoogleMap>
+  )});
 
 
