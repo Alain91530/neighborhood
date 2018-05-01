@@ -44,14 +44,12 @@ class App extends Component {
   }
 
   infoBoxClosed=() => {
-    console.log('box closed')
     this.setState({mapCenter: { lat: 43.591236, lng: 3.258363 }});
     this.setState({zoom: 9});
     this.setState({selectedId: -1});
   }
 
   markerClicked=(point) => {
-    console.log(point);
     this.setState({mapCenter: point.position});
     this.setState({zoom: 15});
     this.setState({mouseOverId: -1})

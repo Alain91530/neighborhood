@@ -17,7 +17,6 @@ export const MyMap = compose(
   withGoogleMap,
 
 )((props) => {
-  console.log(props)
   return (
     <GoogleMap
       zoom={props.zoom}
