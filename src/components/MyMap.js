@@ -23,12 +23,16 @@ return (
     zoom={props.zoom}
     center={props.mapCenter}
     defaultOptions={{ styles: MapStyle}}
-  > { props.placesOfInterest.map(point => (
+  > { props.placesOfInterest.map(point => {
+    let markerUrl='icons/monument-historique.png';
+    (point.id===props.selectedId) ? markerUrl='icons/monument-historique-selected.png'
+    : markerUrl='icons/monument-historique.png';
+    return (
       <Marker
         key={point.id}
         position={point.position}
         animation={ window.google.maps.Animation.DROP}
-        icon='icons/monument-historique.png'
+        icon={markerUrl}
         onClick={ () => props.markerClicked(point)}
       >
         {(point.id===props.selectedId) &&  (
@@ -42,7 +46,7 @@ return (
           </InfoBox>)}
 
       </Marker>
-    ))
+    )})
     }
   </GoogleMap>
 )});

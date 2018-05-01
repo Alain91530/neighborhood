@@ -5,7 +5,7 @@ class Header extends Component {
   render() {
     return(
       <header className="header">
-        <h1 className="header-title">Herault's places of interest</h1>
+        <h1 className="header-title">Herault's historic heritage places</h1>
       </header>
     );
   }
