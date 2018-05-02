@@ -4,7 +4,7 @@ import React, { Component } from 'react';         // eslint-disable-line no-unus
 import escapeRegExp from 'escape-string-regexp';
 
 import {MyMap} from './MyMap';                          // eslint-disable-line no-unused-vars
-import {searchPicByPosition} from '../utils/FlickrAPI'; // eslint-disable-line no-unused-vars
+import {searchPicByPosition, getPic} from '../utils/FlickrAPI'; // eslint-disable-line no-unused-vars
 import SideBar from './SideBar';                  // eslint-disable-line no-unused-vars
 import Header from './Header';                    // eslint-disable-line no-unused-vars
 import Footer from './Footer';                    // eslint-disable-line no-unused-vars
@@ -24,7 +24,7 @@ class App extends Component {
     query : '',
     selectedId: -1,
     mouseOverId: -1,
-    test: null
+    picUrl: ''
   }
 
   componentDidMount() {
@@ -55,7 +55,8 @@ class App extends Component {
   markerClicked=(point) => {
     let searchPics = searchPicByPosition(point.position)
       .then((resp) => {
-        this.setState({test: resp.photos.photo})
+        let url = getPic(resp.photos.photo);
+        this.setState({picUrl: url})
       })
       .catch ((error) => {console.log(error)})
     this.setState({mapCenter: point.position});
@@ -102,7 +103,6 @@ class App extends Component {
     const mouseOverId = this.state.mouseOverId;
     const mapCenter = this.state.mapCenter;
     const zoom= this.state.zoom;
-    console.log(this.state.test);
 
     return (
 
@@ -113,6 +113,7 @@ class App extends Component {
             placesToList = { searchedPoints }
             updateQuery = { this.updateQuery }
             listElementClicked = { this.markerClicked }
+            picUrl = {this.state.picUrl}
           />
           <div className="map-container">
             <MyMap

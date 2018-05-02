@@ -50,6 +50,12 @@
   cursor: pointer;
 }
 
+.pic-of-place {
+  border-style: solid;
+  margin: 7%;
+  max-width: 85%;
+}
+
 .sidebar {
   background-color:rgb(27, 74, 128);
   color: tan;

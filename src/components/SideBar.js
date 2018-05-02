@@ -1,6 +1,8 @@
 import React, { Component } from 'react'; // eslint-disable-line no-unused-vars
 import SearchPlace from './SearchPlace';
 import ListPlaces from './ListPlaces';
+import ShowPlace from './ShowPlace';
+
 
 class SideBar extends Component {
 
@@ -16,7 +18,9 @@ class SideBar extends Component {
         <ListPlaces
           places= {places}
           listElementClicked = {this.props.listElementClicked}
-
+        />
+        <ShowPlace
+          picUrl = {this.props.picUrl}
         />
       </aside>
     );
