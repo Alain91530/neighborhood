@@ -3,7 +3,8 @@
 import React, { Component } from 'react';         // eslint-disable-line no-unused-vars
 import escapeRegExp from 'escape-string-regexp';
 
-import {MyMap} from './MyMap';                    // eslint-disable-line no-unused-vars
+import {MyMap} from './MyMap';                          // eslint-disable-line no-unused-vars
+import {searchPicByPosition} from '../utils/FlickrAPI'; // eslint-disable-line no-unused-vars
 import SideBar from './SideBar';                  // eslint-disable-line no-unused-vars
 import Header from './Header';                    // eslint-disable-line no-unused-vars
 import Footer from './Footer';                    // eslint-disable-line no-unused-vars
@@ -22,7 +23,8 @@ class App extends Component {
     searchedPoints:[],
     query : '',
     selectedId: -1,
-    mouseOverId: -1
+    mouseOverId: -1,
+    test: null
   }
 
   componentDidMount() {
@@ -51,10 +53,16 @@ class App extends Component {
   }
 
   markerClicked=(point) => {
+    let searchPics = searchPicByPosition(point.position)
+      .then((resp) => {
+        this.setState({test: resp.photos.photo})
+      })
+      .catch ((error) => {console.log(error)})
     this.setState({mapCenter: point.position});
     this.setState({zoom: 15});
-    this.setState({mouseOverId: -1})
+    this.setState({mouseOverId: -1});
     this.setState({selectedId: point.id});
+    
   }
 
   markerOut=() => {
@@ -94,6 +102,7 @@ class App extends Component {
     const mouseOverId = this.state.mouseOverId;
     const mapCenter = this.state.mapCenter;
     const zoom= this.state.zoom;
+    console.log(this.state.test);
 
     return (
 

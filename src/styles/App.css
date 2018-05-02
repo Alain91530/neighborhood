@@ -14,7 +14,12 @@
   color: tan;
   text-align: center;
   font-size: 0.8em;
+  height: 5vh;
   width: 100%;
+}
+
+.footer-text {
+  margin: 0.3vh;
 }
 
 .header {
@@ -48,5 +53,6 @@
 .sidebar {
   background-color:rgb(27, 74, 128);
   color: tan;
+  height: 89vh;
   width: 25%;
 }
