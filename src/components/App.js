@@ -50,10 +50,11 @@ class App extends Component {
     this.setState({mapCenter: { lat: 43.591236, lng: 3.258363 }});
     this.setState({zoom: 9});
     this.setState({selectedId: -1});
+    this.setState({picUrl:''});
   }
 
   markerClicked=(point) => {
-    let searchPics = searchPicByPosition(point.position)
+    let searchPics = searchPicByPosition(point)
       .then((resp) => {
         let url = getPic(resp.photos.photo);
         this.setState({picUrl: url})

@@ -1,11 +1,13 @@
 const API = 'https://api.flickr.com/services/rest/';
 const APIKey = '5bf1311525022cec7b4c3371d88ae3b6';
 const picSearch = 'flickr.photos.search&format=json&nojsoncallback=1';
-const tags ='&accuracy=16&tags=tour,pont,monument,egilse,fort'
+const tags ='&accuracy=16&tags=tower,bridge,monument,castle,church,fort,town,ecluse,chapel';
 let request = API+'?&api_key='+APIKey;
 
-export const searchPicByPosition = ( position ) => {
-  let url = `${request}&method=${picSearch}&lat=${position.lat}&lon=${position.lng}${tags}`;
+export const searchPicByPosition = ( point ) => {
+  const text= '&text='+point.title.slice(0,point.title.indexOf(' '));
+  console.log(text)
+  const url = `${request}&method=${picSearch}&lat=${point.position.lat}&lon=${point.position.lng}${text}&sort=interestingness_desc`;
   return(fetch(url)
     .then(response => {
       return (response.json());
@@ -20,6 +22,7 @@ export const getPic = ( allPhotos ) => {
   allPhotos = allPhotos.filter(
     photo => (photo.ispublic)&!(photo.isfamily)&!(photo.isfriend)&(photo.title.length)
   );
+  console.log(allPhotos.length)
   if (allPhotos.length) {
     const photo=allPhotos[0];
     url = url+`${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}.jpg`;

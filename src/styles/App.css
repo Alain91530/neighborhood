@@ -49,11 +49,17 @@
 .place-listed {
   cursor: pointer;
 }
-
+.pic-container {
+  display: flex;
+  flex-flow: wrap;
+  justify-content: center;
+  text-align: center;
+}
 .pic-of-place {
   border-style: solid;
   margin: 7%;
   max-width: 85%;
+  max-height: 24vh;
 }
 
 .sidebar {
