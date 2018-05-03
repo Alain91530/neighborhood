@@ -104,6 +104,7 @@ class App extends Component {
     const mouseOverId = this.state.mouseOverId;
     const mapCenter = this.state.mapCenter;
     const zoom= this.state.zoom;
+    const picUrl = this.state.picUrl;
 
     return (
 
@@ -122,6 +123,7 @@ class App extends Component {
               zoom = { zoom }
               placesOfInterest={ searchedPoints }
               selectedId={ selectedId }
+              picUrl = {picUrl}
               mouseOverId = { mouseOverId}
               markerClicked={this.markerClicked}
               markerOver={this.markerOver}

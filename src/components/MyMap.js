@@ -3,6 +3,7 @@ import { compose, withProps } from 'recompose';
 import { withScriptjs, withGoogleMap, GoogleMap, Marker } from 'react-google-maps';
 import { InfoBox } from 'react-google-maps/lib/components/addons/InfoBox'
 import MapStyle from '../data/MapStyle';
+import ShowPlace from './ShowPlace'
 import '../styles/App.css';
 
 export const MyMap = compose(
@@ -35,6 +36,7 @@ export const MyMap = compose(
             onClick = { () => props.markerClicked(point)}
             onMouseOver = { () => props.markerOver(point)}
             onMouseOut = { () => props.markerOut()}
+            title= { point.title }
           >
             {(point.id===props.selectedId) &&  (
               <InfoBox
@@ -42,6 +44,8 @@ export const MyMap = compose(
                 <div className="info-point" tabIndex='0'>
                   <div className="info-title" >
                     <p>{ point.translatedTitle }</p>
+                    <ShowPlace 
+                      picUrl = {props.picUrl} />
                   </div>
                 </div>
               </InfoBox>)}
