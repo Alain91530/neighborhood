@@ -59,6 +59,15 @@
   justify-content: center;
   text-align: center;
 }
+
+.pics-container{
+  display: flex;
+  flex-flow: wrap;
+  height: 88vh;
+  background-color: wheat;
+  justify-content: center;
+}
+
 .pic-of-place {
   border-style: solid;
   margin: 7%;

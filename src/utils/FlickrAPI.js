@@ -18,13 +18,14 @@ export const searchPicByPosition = ( point ) => {
 
 export const getPic = ( allPhotos ) => {
   let firstUrls = []
-  let url='https://farm';
   allPhotos = allPhotos.filter(
     photo => (photo.ispublic)&!(photo.isfamily)&!(photo.isfriend)&(photo.title.length)
   );
   console.log(allPhotos.length)
   if (allPhotos.length) {
     for (let i = 0; i<allPhotos.length; i++) {
+      let url='https://farm';
+
       const photo=allPhotos[i];
       url = url+`${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}.jpg`;
       firstUrls.push(url);

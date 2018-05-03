@@ -13,39 +13,27 @@ import '../styles/App.css';
 
 class PicsPage extends Component {
 
-    state = {
-      pointsOfInterest : [],
-      searchedPoints:[],
-      query : '',
-      selectedId: -1,
-      picUrls: []
-    }
 
-    render() {
 
-      const searchedPoints = this.state.searchedPoints;
+  render() {
 
-      const picUrls = this.state.picUrls;
+    let picUrls = this.props.picUrls;
+    let Urls = picUrls.slice(0, Math.min(11,picUrls.length));
+    console.log(Urls)
+    return (
     
-      return (
-    
-        <div>
-          <Header />
-          <div className="container">
-            <SideBar
-              placesToList = { searchedPoints }
-              picUrls = {picUrls}
-              updateQuery = { this.updateQuery }
-              listElementClicked = { this.markerClicked }
-            />
-            <div className="pics-container">
-<h2>Photos around</h2>
-            </div>
-            <Footer />
-          </div>
+      <div>
+        <Header />
+        <div className="pics-container">
+          <h2>Photos around</h2>
+          {picUrls.map((url) =>
+              <img className="pic-of-place" src={url} alt="" />
+          )}
         </div>
-      );
-    }
+        <Footer />
+      </div>
+    );
+  }
 }
 
 export default PicsPage;

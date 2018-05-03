@@ -109,42 +109,50 @@ class App extends Component {
     const picUrls = this.state.picUrls;
 
     return (
-<BrowserRouter>
-      <div>
-        <Header />
-        <div className="container">
-          <SideBar
-            placesToList = { searchedPoints }
-            picUrls = {picUrls}
-            updateQuery = { this.updateQuery }
-            listElementClicked = { this.markerClicked }
-          />
+      <BrowserRouter>
+        <div>
           <Route exact path='/' render = {() => (
-            <div className="map-container">
-              <MyMap
-                mapCenter = { mapCenter }
-                zoom = { zoom }
-                placesOfInterest={ searchedPoints }
-                selectedId={ selectedId }
-                picUrls = {picUrls}
-                mouseOverId = { mouseOverId}
-                markerClicked={this.markerClicked}
-                markerOver={this.markerOver}
-                markerOut={this.markerOut}
-                infoBoxClosed={this.infoBoxClosed}
+            <div>
+              <Header
               />
+              <div className="container">
+                <SideBar
+                  placesToList = { searchedPoints }
+                  picUrls = {picUrls}
+                  updateQuery = { this.updateQuery }
+                  listElementClicked = { this.markerClicked }
+                />
+
+                <div className="map-container">
+                  <MyMap
+                    mapCenter = { mapCenter }
+                    zoom = { zoom }
+                    placesOfInterest={ searchedPoints }
+                    selectedId={ selectedId }
+                    picUrls = {picUrls}
+                    mouseOverId = { mouseOverId}
+                    markerClicked={this.markerClicked}
+                    markerOver={this.markerOver}
+                    markerOut={this.markerOut}
+                    infoBoxClosed={this.infoBoxClosed}
+                  />
+                </div>
+              </div>
+        
+              <Footer />
             </div>
           )}/>
-          <Route path='/pics' render= {() =>
-          <div className="pics-container">
-          <PicsPage
-          picUrls = {picUrls}
-          />
-        </div>}
-        />
-          <Footer />
+          <Route path='/pics' render= {() => (
+            <div className="pics-container">
+
+              <PicsPage
+                picUrls = {picUrls}
+                searchedPoints = {searchedPoints}
+              />
+            </div>
+          )} />
         </div>
-      </div>
+
       </BrowserRouter>
     );
   }
