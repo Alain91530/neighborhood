@@ -6,7 +6,7 @@ class Footer extends Component {
     return(
       <footer className="footer">
         <p className="footer-text">Developped by A. Cadenat. Data: french government open data project historical heritage database</p>
-        <p className="footer-text">Photos provided by Flickr</p>
+        <p className="footer-text">Photos provided by Flickr (Copyryght may apply)</p>
       </footer>
     );
   }

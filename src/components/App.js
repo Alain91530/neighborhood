@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';         // eslint-disable-line no-unused-vars
 import escapeRegExp from 'escape-string-regexp';
+import { BrowserRouter, Route } from 'react-router-dom'; // eslint-disable-line no-unused-vars
 
 import {MyMap} from './MyMap';                          // eslint-disable-line no-unused-vars
 import {searchPicByPosition, getPic} from '../utils/FlickrAPI'; // eslint-disable-line no-unused-vars
@@ -13,6 +14,7 @@ import Places from '../data/places';
 import Translation from '../data/translation';
 
 import '../styles/App.css';
+import PicsPage from './PicsPage';
 
 class App extends Component {
 
@@ -24,7 +26,7 @@ class App extends Component {
     query : '',
     selectedId: -1,
     mouseOverId: -1,
-    picUrl: ''
+    picUrls: []
   }
 
   componentDidMount() {
@@ -50,14 +52,14 @@ class App extends Component {
     this.setState({mapCenter: { lat: 43.591236, lng: 3.258363 }});
     this.setState({zoom: 9});
     this.setState({selectedId: -1});
-    this.setState({picUrl:''});
+    this.setState({picUrls:''});
   }
 
   markerClicked=(point) => {
-    let searchPics = searchPicByPosition(point)
+    searchPicByPosition(point)
       .then((resp) => {
-        let url = getPic(resp.photos.photo);
-        this.setState({picUrl: url})
+        let picUrls = getPic(resp.photos.photo);
+        this.setState({picUrls: picUrls})
       })
       .catch ((error) => {console.log(error)})
     this.setState({mapCenter: point.position});
@@ -104,36 +106,46 @@ class App extends Component {
     const mouseOverId = this.state.mouseOverId;
     const mapCenter = this.state.mapCenter;
     const zoom= this.state.zoom;
-    const picUrl = this.state.picUrl;
+    const picUrls = this.state.picUrls;
 
     return (
-
+<BrowserRouter>
       <div>
         <Header />
         <div className="container">
           <SideBar
             placesToList = { searchedPoints }
+            picUrls = {picUrls}
             updateQuery = { this.updateQuery }
             listElementClicked = { this.markerClicked }
-            picUrl = {this.state.picUrl}
           />
-          <div className="map-container">
-            <MyMap
-              mapCenter = { mapCenter }
-              zoom = { zoom }
-              placesOfInterest={ searchedPoints }
-              selectedId={ selectedId }
-              picUrl = {picUrl}
-              mouseOverId = { mouseOverId}
-              markerClicked={this.markerClicked}
-              markerOver={this.markerOver}
-              markerOut={this.markerOut}
-              infoBoxClosed={this.infoBoxClosed}
-            />
-          </div>
+          <Route exact path='/' render = {() => (
+            <div className="map-container">
+              <MyMap
+                mapCenter = { mapCenter }
+                zoom = { zoom }
+                placesOfInterest={ searchedPoints }
+                selectedId={ selectedId }
+                picUrls = {picUrls}
+                mouseOverId = { mouseOverId}
+                markerClicked={this.markerClicked}
+                markerOver={this.markerOver}
+                markerOut={this.markerOut}
+                infoBoxClosed={this.infoBoxClosed}
+              />
+            </div>
+          )}/>
+          <Route path='/pics' render= {() =>
+          <div className="pics-container">
+          <PicsPage
+          picUrls = {picUrls}
+          />
+        </div>}
+        />
           <Footer />
         </div>
       </div>
+      </BrowserRouter>
     );
   }
 }

@@ -1,4 +1,6 @@
 import React, { Component } from 'react'; // eslint-disable-line no-unused-vars
+import { BrowserRouter, Link } from 'react-router-dom'; // eslint-disable-line no-unused-vars
+
 import SearchPlace from './SearchPlace';
 import ListPlaces from './ListPlaces';
 import ShowPlace from './ShowPlace';
@@ -20,8 +22,10 @@ class SideBar extends Component {
           listElementClicked = {this.props.listElementClicked}
         />
         <ShowPlace
-          picUrl = {this.props.picUrl}
+          picUrls = {this.props.picUrls}
         />
+        {(this.props.picUrls.length>1) && (<Link to='/pics'>>More photos</Link>)}
+
       </aside>
     );
   }

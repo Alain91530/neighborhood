@@ -45,7 +45,7 @@ export const MyMap = compose(
                   <div className="info-title" >
                     <p>{ point.translatedTitle }</p>
                     <ShowPlace 
-                      picUrl = {props.picUrl} />
+                      picUrls = {props.picUrls} />
                   </div>
                 </div>
               </InfoBox>)}
