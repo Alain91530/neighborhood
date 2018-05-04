@@ -4,7 +4,8 @@ const picSearch = 'flickr.photos.search&format=json&nojsoncallback=1';
 const request = API+'?&api_key='+APIKey;
 
 export const searchPicByPosition = ( point ) => {
-  const text= '&text='+point.title.slice(0,point.title.indexOf(' '));
+  let text = point.title.slice(0,point.title.indexOf(' '));
+  (text==='hotel') ? text = '&text=monument' : text = '&text='+text;
   console.log(text)
   const url = `${request}&method=${picSearch}&lat=${point.position.lat}&lon=${point.position.lng}${text}`;
   return(fetch(url)
@@ -17,23 +18,24 @@ export const searchPicByPosition = ( point ) => {
   );};
 
 export const getPic = ( allPhotos ) => {
-  let firstUrls = [];
+  let firstImgs = [];
   allPhotos = allPhotos.filter(
     photo => (photo.ispublic)&!(photo.isfamily)&!(photo.isfriend)&(photo.title.length)
   );
-  console.log(allPhotos.length)
+  let imgUrl;
+  let img;
+
   if (allPhotos.length) {
     for (let i = 0; i<allPhotos.length; i++) {
-      let url='https://farm';
-
-      const photo=allPhotos[i];
-      url = url+`${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}.jpg`;
-      firstUrls.push(url);
+      imgUrl = 'https://farm';
+      const photo = allPhotos[i];
+      imgUrl = imgUrl+`${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}.jpg`;
+      img = {key: photo.id, url: imgUrl};
+      firstImgs.push(img);
     }}
   else {
-    firstUrls.push('icons/no_pic.jpg');
+    firstImgs.push({key: 0, url: 'icons/no_pic.jpg'});
   }
-  console.log(firstUrls);
-  return firstUrls;
+  return firstImgs;
 
 };

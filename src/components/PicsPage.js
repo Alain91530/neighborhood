@@ -17,16 +17,16 @@ class PicsPage extends Component {
 
     const { selectedId, searchedPoints } = this.props;
     let pageTitle=searchedPoints.filter( point => (selectedId===point.id))[0];
-    let picUrls = this.props.picUrls;
-    picUrls = picUrls.slice(0, Math.min(10,picUrls.length));
+    let pics = this.props.pics;
+    pics = pics.slice(0, Math.min(8,pics.length));
 
     return (
       <div>
         <Header />
         <div className="pics-container">
           <h2 className="pics-title">Photos about {pageTitle.translatedTitle} on Flickr</h2>
-          {picUrls.map((url) =>
-            <img className="pic-of-place" src={url} alt="" />
+          {pics.map((pic) =>
+            <img className="pic-of-place" key={pic.key} src={pic.url} alt="" />
           )}
         </div>
         <Footer />

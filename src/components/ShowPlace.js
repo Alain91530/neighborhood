@@ -4,16 +4,16 @@ import PropTypes from 'prop-types';
 class ShowPlace extends Component {
 
   static propTypes = {
-    picUrls: PropTypes.array.isRequired
+    pics: PropTypes.array.isRequired
   }
 
   render () {
-    const picUrls=this.props.picUrls;
+    const pics=this.props.pics;
 
     return (
 
       <div className="pic-container">
-        {(picUrls.length!==0) && (<img className="pic-of-place" src={picUrls[0]} alt="" />)}
+        {(pics.length!==0) && (<img className="pic-of-place" src={pics[0].url} alt="" />)}
       </div>
     );
   }

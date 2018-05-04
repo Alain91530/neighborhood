@@ -26,7 +26,7 @@ class App extends Component {
     query : '',
     selectedId: -1,
     mouseOverId: -1,
-    picUrls: []
+    pics: []
   }
 
   componentDidMount() {
@@ -54,14 +54,14 @@ class App extends Component {
       mapCenter: { lat: 43.591236, lng: 3.258363 },
       zoom: 9,
       selectedId: -1,
-      picUrls:''});
+      pics:[]});
   }
 
   markerClicked=(point) => {
     searchPicByPosition(point)
       .then((resp) => {
-        let picUrls = getPic(resp.photos.photo);
-        this.setState({picUrls: picUrls});
+        let pics = getPic(resp.photos.photo);
+        this.setState({pics: pics});
       })
       .catch ((error) => {console.log(error)});
     this.setState({
@@ -103,7 +103,7 @@ class App extends Component {
       mouseOverId,
       mapCenter,
       zoom,
-      picUrls,
+      pics,
       query } = this.state;
 
     return (
@@ -116,7 +116,7 @@ class App extends Component {
               <div className="container">
                 <SideBar
                   places = { searchedPoints }
-                  picUrls = {picUrls}
+                  pics = {pics}
                   previousQuery = {query}
                   updateQuery = { this.updateQuery }
                   listElementClicked = { this.markerClicked }
@@ -128,7 +128,7 @@ class App extends Component {
                     zoom = { zoom }
                     placesOfInterest={ searchedPoints }
                     selectedId={ selectedId }
-                    picUrls = {picUrls}
+                    pics = {pics}
                     mouseOverId = { mouseOverId}
                     markerClicked={this.markerClicked}
                     markerOver={this.markerOver}
@@ -143,7 +143,7 @@ class App extends Component {
           <Route path='/pics' render= {() => (
             <div className="pics-container">
               <PicsPage
-                picUrls = { picUrls }
+                pics = { pics }
                 searchedPoints = { searchedPoints }
                 selectedId ={ selectedId }
               />

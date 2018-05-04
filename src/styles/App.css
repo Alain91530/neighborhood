@@ -79,9 +79,19 @@
 
 .pics-container .pic-of-place {
   overflow: hidden;
+  max-height: 21vh;
   max-width: 30%;
   margin: 1%;
   border-color: rgb(27, 74, 128);
+}
+
+.pics-link {
+  color: rgb(27, 74, 128);
+  margin: 25%;
+  background-color: tan;
+  border-style: solid;
+  border-radius: 25px;
+  text-decoration: none;
 }
 
 .pic-of-place {

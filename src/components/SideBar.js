@@ -10,7 +10,7 @@ import ShowPlace from './ShowPlace';      // eslint-disable-line no-unused-vars
 class SideBar extends Component {
 
   render() {
-    const { places, picUrls, listElementClicked, updateQuery } =this.props;
+    const { places, pics, listElementClicked, updateQuery } =this.props;
 
     return(
       <aside className= "sidebar">
@@ -23,11 +23,11 @@ class SideBar extends Component {
           listElementClicked = { listElementClicked }
         />
         <ShowPlace
-          picUrls = {picUrls}
+          pics = {pics}
         />
-        {(picUrls.length>1) && (<Link
-          className="pics-link"
-          to='/pics'>>More photos</Link>)}
+        {(pics.length>1) && (<div className="pics-link"><Link
+          
+          to='/pics'>More photos</Link></div>)}
 
       </aside>
     );
