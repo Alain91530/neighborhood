@@ -44,29 +44,31 @@ class App extends Component {
     }
 
     // Update the state to render the markers
-    this.setState({pointsOfInterest: myPlaces});
-    this.setState({searchedPoints: myPlaces});
+    this.setState({
+      pointsOfInterest: myPlaces,
+      searchedPoints: myPlaces});
   }
 
   infoBoxClosed=() => {
-    this.setState({mapCenter: { lat: 43.591236, lng: 3.258363 }});
-    this.setState({zoom: 9});
-    this.setState({selectedId: -1});
-    this.setState({picUrls:''});
+    this.setState({
+      mapCenter: { lat: 43.591236, lng: 3.258363 },
+      zoom: 9,
+      selectedId: -1,
+      picUrls:''});
   }
 
   markerClicked=(point) => {
     searchPicByPosition(point)
       .then((resp) => {
         let picUrls = getPic(resp.photos.photo);
-        this.setState({picUrls: picUrls})
+        this.setState({picUrls: picUrls});
       })
-      .catch ((error) => {console.log(error)})
-    this.setState({mapCenter: point.position});
-    this.setState({zoom: 15});
-    this.setState({mouseOverId: -1});
-    this.setState({selectedId: point.id});
-    
+      .catch ((error) => {console.log(error)});
+    this.setState({
+      mapCenter: point.position,
+      zoom: 15,
+      mouseOverId: -1,
+      selectedId: point.id});
   }
 
   markerOut=() => {
@@ -84,8 +86,6 @@ class App extends Component {
     * No need to search for places if query is empty (after backspacing or
      * deleting), but we need to set the new state
      */
-
-    // Update the query
     this.setState({query});
     if ( query ) {
       const match = new RegExp( escapeRegExp( query ), 'i' );
@@ -94,19 +94,17 @@ class App extends Component {
     else {
       searchedPoints = pointsOfInterest;
     }
-
     this.setState({searchedPoints});
-
   }
 
   render() {
-
-    const searchedPoints = this.state.searchedPoints;
-    const selectedId = this.state.selectedId;
-    const mouseOverId = this.state.mouseOverId;
-    const mapCenter = this.state.mapCenter;
-    const zoom= this.state.zoom;
-    const picUrls = this.state.picUrls;
+    const { searchedPoints,
+      selectedId,
+      mouseOverId,
+      mapCenter,
+      zoom,
+      picUrls,
+      query } = this.state;
 
     return (
       <BrowserRouter>
@@ -117,8 +115,9 @@ class App extends Component {
               />
               <div className="container">
                 <SideBar
-                  placesToList = { searchedPoints }
+                  places = { searchedPoints }
                   picUrls = {picUrls}
+                  previousQuery = {query}
                   updateQuery = { this.updateQuery }
                   listElementClicked = { this.markerClicked }
                 />
@@ -138,21 +137,19 @@ class App extends Component {
                   />
                 </div>
               </div>
-        
               <Footer />
             </div>
           )}/>
           <Route path='/pics' render= {() => (
             <div className="pics-container">
-
               <PicsPage
-                picUrls = {picUrls}
-                searchedPoints = {searchedPoints}
+                picUrls = { picUrls }
+                searchedPoints = { searchedPoints }
+                selectedId ={ selectedId }
               />
             </div>
           )} />
         </div>
-
       </BrowserRouter>
     );
   }

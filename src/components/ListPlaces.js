@@ -5,12 +5,15 @@ import PropTypes from 'prop-types';
 class ListPlaces extends Component {
 
   static propTypes = {
-    places: PropTypes.array.isRequired
+    places: PropTypes.array.isRequired,
+    listElementClicked: PropTypes.func.isRequired
   }
+
   render() {
-    const places=this.props.places;
+    const { places, listElementClicked } = this.props;
     let placesListed=[];
-    for (let i=0; i<Math.min(11,places.length); i++) {
+
+    for (let i=0; i<places.length; i++) {
       placesListed[i] = places[i];
     }
 
@@ -19,7 +22,7 @@ class ListPlaces extends Component {
         {placesListed.map(place => (
           <li
             key= {place.id} className="place-listed"
-            onClick = { () => this.props.listElementClicked(place)}
+            onClick = { () => listElementClicked(place)}
           >
             <p>{place.translatedTitle}</p>
           </li>

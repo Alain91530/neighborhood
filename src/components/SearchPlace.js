@@ -3,24 +3,27 @@ import PropTypes from 'prop-types';
 
 class SearchPlace extends Component {
 
-    state = {
-      query: ''
-    }
+  static propTypes = {
+    updateQuery: PropTypes.func.isRequired
+  }
 
-    render() {
-      let query;
-      return (        <div>
-        <h1>Test 1</h1>
+
+  render() {
+    const { updateQuery } = this.props;
+    let query;
+
+    return (
+      <div>
         <input
           className='search-place'
           type='text'
           placeholder='Search for a place'
           value={query}
-          onChange = {(event) => this.props.updateQuery(event.target.value)}
+          onChange = {(event) => updateQuery(event.target.value)}
         />
       </div>
-      );
-    }
+    );
+  }
 }
 
 export default SearchPlace;

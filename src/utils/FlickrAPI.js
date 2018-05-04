@@ -6,7 +6,7 @@ const request = API+'?&api_key='+APIKey;
 export const searchPicByPosition = ( point ) => {
   const text= '&text='+point.title.slice(0,point.title.indexOf(' '));
   console.log(text)
-  const url = `${request}&method=${picSearch}&lat=${point.position.lat}&lon=${point.position.lng}${text}&sort=interestingness_desc`;
+  const url = `${request}&method=${picSearch}&lat=${point.position.lat}&lon=${point.position.lng}${text}`;
   return(fetch(url)
     .then(response => {
       return (response.json());
@@ -17,7 +17,7 @@ export const searchPicByPosition = ( point ) => {
   );};
 
 export const getPic = ( allPhotos ) => {
-  let firstUrls = []
+  let firstUrls = [];
   allPhotos = allPhotos.filter(
     photo => (photo.ispublic)&!(photo.isfamily)&!(photo.isfriend)&(photo.title.length)
   );
