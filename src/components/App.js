@@ -118,6 +118,7 @@ class App extends Component {
                   places = { searchedPoints }
                   pics = {pics}
                   previousQuery = {query}
+                  selectedId= { selectedId }
                   updateQuery = { this.updateQuery }
                   listElementClicked = { this.markerClicked }
                 />

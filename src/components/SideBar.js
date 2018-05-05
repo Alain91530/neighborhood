@@ -10,7 +10,7 @@ import ShowPlace from './ShowPlace';      // eslint-disable-line no-unused-vars
 class SideBar extends Component {
 
   render() {
-    const { places, pics, listElementClicked, updateQuery } =this.props;
+    const { places, pics, listElementClicked, updateQuery, selectedId } =this.props;
 
     return(
       <aside className= "sidebar">
@@ -21,6 +21,7 @@ class SideBar extends Component {
         <ListPlaces
           places= {places}
           listElementClicked = { listElementClicked }
+          selectedId = { selectedId }
         />
         <ShowPlace
           pics = {pics}

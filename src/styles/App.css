@@ -64,6 +64,10 @@
 .place-listed {
   cursor: pointer;
 }
+
+.selected {
+  color: lightblue;
+}
 .pic-container {
   display: flex;
   flex-flow: wrap;
