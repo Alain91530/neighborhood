@@ -61,16 +61,14 @@ class App extends Component {
     searchPicByPosition(point)
       .then((resp) => {
         let pics = getPics(resp.photos.photo);
-        console.log(pics);
         Promise.all(pics)
-          .then(response => {let test = response.map((resp) =>(
-            {key: 0, url: resp})
-          );
-          this.setState({pics: test});
+          .then(response => {
+            let keyValue= 0;
+            let test = response.map((resp) =>(
+              {key: keyValue++, url: resp}));
+            this.setState({pics: test});
           });
-        this.setState({pics: pics});
       })
-      
       .catch ((error) => {console.log(error);});
     this.setState({
       mapCenter: point.position,
