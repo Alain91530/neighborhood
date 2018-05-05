@@ -12,7 +12,7 @@ class ListPlaces extends Component {
   render() {
     const { places, listElementClicked, selectedId } = this.props;
     let placesListed=[];
-
+    
     for (let i=0; i<places.length; i++) {
       placesListed[i] = places[i];
     }
@@ -23,14 +23,14 @@ class ListPlaces extends Component {
           let placeClass='';
           (place.id===selectedId) ? placeClass = 'place-listed selected' : placeClass= 'place-listed';
           return(
-          <li
-            key= {place.id}
-             className={placeClass}
-            onClick = { () => listElementClicked(place)}
-          >
-            <p>{place.translatedTitle}</p>
-          </li>
-        )})}
+            <li
+              key= {place.id}
+              className={placeClass}
+              onClick = { () => listElementClicked(place)}
+            >
+              <p>{place.translatedTitle}</p>
+            </li>
+          )})}
       </ul>
 
     );
