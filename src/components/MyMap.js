@@ -31,7 +31,6 @@ export const MyMap = compose(
           <Marker
             key={point.id}
             position = {point.position}
-            animation = { window.google.maps.Animation.DROP}
             icon = {markerUrl}
             onClick = { () => props.markerClicked(point)}
             onMouseOver = { () => props.markerOver(point)}
@@ -44,7 +43,7 @@ export const MyMap = compose(
                 <div className="info-point" tabIndex='0'>
                   <div className="info-title" >
                     <p>{ point.translatedTitle }</p>
-                    <ShowPlace 
+                    <ShowPlace
                       pics = {props.pics} />
                   </div>
                 </div>
