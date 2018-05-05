@@ -14,7 +14,7 @@ class SideBar extends Component {
 
     return(
       <aside className= "sidebar">
-        <h2>Menu</h2>
+        <h4 className = "sidebar-title"> Search a place or a monument</h4>
         <SearchPlace
           updateQuery = { updateQuery }
         />

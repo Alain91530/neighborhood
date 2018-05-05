@@ -51,7 +51,9 @@
 
 .list-of-places {
   height: 45vh;
+  list-style: none;
   overflow: auto;
+  width: 80%;
 }
 
 .map-container {
@@ -87,11 +89,13 @@
 
 .pics-link {
   color: rgb(27, 74, 128);
-  margin: 25%;
+  margin-left: 25%;
+  box-shadow: 2px 2px grey;
   background-color: tan;
-  border-style: solid;
+  border-style: double;
   border-radius: 25px;
-  text-decoration: none;
+  text-align: center;
+  width: 50%;
 }
 
 .pic-of-place {
@@ -106,9 +110,23 @@
   width: 100%;
 }
 
+.search-place {
+  margin-left: 10px;
+  width: 80%;
+}
+
 .sidebar {
   background-color:rgb(27, 74, 128);
   color: tan;
   height: 90vh;
   width: 25%;
+}
+
+.sidebar-title {
+  margin-left: 10px;
+}
+
+.pics-link  a {
+  color: rgb(27, 74, 128);
+  text-decoration: none;
 }

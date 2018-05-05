@@ -17,7 +17,8 @@ class SearchPlace extends Component {
         <input
           className='search-place'
           type='text'
-          placeholder='Search for a place'
+          placeholder='Place or name, ex church, Aniane'
+          title="Search a monument"
           value={query}
           onChange = {(event) => updateQuery(event.target.value)}
         />
