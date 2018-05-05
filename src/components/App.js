@@ -5,7 +5,7 @@ import escapeRegExp from 'escape-string-regexp';
 import { BrowserRouter, Route } from 'react-router-dom'; // eslint-disable-line no-unused-vars
 
 import {MyMap} from './MyMap';                          // eslint-disable-line no-unused-vars
-import {searchPicByPosition, getPic} from '../utils/FlickrAPI'; // eslint-disable-line no-unused-vars
+import {searchPicByPosition, getPics} from '../utils/FlickrAPI'; // eslint-disable-line no-unused-vars
 import SideBar from './SideBar';                  // eslint-disable-line no-unused-vars
 import Header from './Header';                    // eslint-disable-line no-unused-vars
 import Footer from './Footer';                    // eslint-disable-line no-unused-vars
@@ -60,10 +60,18 @@ class App extends Component {
   markerClicked=(point) => {
     searchPicByPosition(point)
       .then((resp) => {
-        let pics = getPic(resp.photos.photo);
+        let pics = getPics(resp.photos.photo);
+        console.log(pics);
+        Promise.all(pics)
+          .then(response => {let test = response.map((resp) =>(
+            {key: 0, url: resp})
+          );
+          this.setState({pics: test});
+          });
         this.setState({pics: pics});
       })
-      .catch ((error) => {console.log(error)});
+      
+      .catch ((error) => {console.log(error);});
     this.setState({
       mapCenter: point.position,
       zoom: 15,
