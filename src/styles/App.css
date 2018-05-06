@@ -2,6 +2,21 @@
   text-align: center;
 }
 
+.back-to-map {
+  background-image: url("../icons/arrow-back.svg");
+  background-color: lightblue;
+  background-repeat: no-repeat;
+  background-size: 50px;
+  color: white;
+  display: block;
+  font-size: 0;
+  height: 50px;
+  position: absolute;
+  left: 5vw;
+  top: 0.45vh;
+  width: 50px;
+  border-radius: 30px;}
+
 .container {
   display: flex;
   flex-flow: wrap;

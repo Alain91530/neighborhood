@@ -4,13 +4,13 @@ import PropTypes from 'prop-types';
 class SearchPlace extends Component {
 
   static propTypes = {
-    updateQuery: PropTypes.func.isRequired
+    updateQuery: PropTypes.func.isRequired,
+    query: PropTypes.string.isRequired
   }
 
 
   render() {
-    const { updateQuery } = this.props;
-    let query;
+    const { updateQuery, query } = this.props;
 
     return (
       <div>

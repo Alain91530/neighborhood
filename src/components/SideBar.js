@@ -10,12 +10,13 @@ import ShowPlace from './ShowPlace';      // eslint-disable-line no-unused-vars
 class SideBar extends Component {
 
   render() {
-    const { places, pics, listElementClicked, updateQuery, selectedId } =this.props;
+    const { places, pics, listElementClicked, updateQuery, query, selectedId } =this.props;
 
     return(
       <aside className= "sidebar">
         <h4 className = "sidebar-title"> Search a place or a monument</h4>
         <SearchPlace
+          query = { query}
           updateQuery = { updateQuery }
         />
         <ListPlaces
