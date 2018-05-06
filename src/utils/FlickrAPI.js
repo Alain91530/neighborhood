@@ -5,22 +5,27 @@ const request = API+'?&api_key='+APIKey;
 
 export const searchPicByPosition = ( point ) => {
   let text = point.title.slice(0,point.title.indexOf(' '));
-  (text==='hotel') ? text = '&text=monument' : text = '&text='+text;
+  (text==='hotel'|| text==='maison') ? text = '&text=monument' : text = '&text='+text;
   const url = `${request}&method=${picSearch}&lat=${point.position.lat}&lon=${point.position.lng}${text}`;
   return(fetch(url)
     .then (response =>response.json())
     .catch(error => {console.log(error);})
   );};
 
-export const getPics = ( allPhotos ) => {
-  allPhotos = allPhotos.filter(
-    photo => (photo.ispublic)&!(photo.isfamily)&!(photo.isfriend)&(photo.title.length)
-  );
-  allPhotos = allPhotos.slice(0, Math.min(10,allPhotos.length));
-  allPhotos = allPhotos.map(
-    photo=> getBlob(
-      `https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}.jpg`
-    ));
+export const getPics = ( allPhotos, number ) => {
+  if (allPhotos.length) {
+    allPhotos = allPhotos.filter(
+      photo => (photo.ispublic)&!(photo.isfamily)&!(photo.isfriend)&(photo.title.length)
+    );
+    allPhotos = allPhotos.slice(0, Math.min(number,allPhotos.length));
+    allPhotos = allPhotos.map(
+      photo=> getBlob(
+        `https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}.jpg`
+      ));
+  }
+  else {
+    allPhotos = ['icons/no_pic.jpg']
+  }
   return allPhotos;
 };
 

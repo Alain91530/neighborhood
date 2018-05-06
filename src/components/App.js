@@ -59,8 +59,8 @@ class App extends Component {
 
   markerClicked=(point) => {
     searchPicByPosition(point)
-      .then((resp) => {
-        let pics = getPics(resp.photos.photo);
+      .then((response) => {
+        let pics = getPics(response.photos.photo, 1);
         Promise.all(pics)
           .then(response => {
             let keyValue= 0;
