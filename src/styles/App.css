@@ -14,7 +14,7 @@
   color: tan;
   text-align: center;
   font-size: 0.8em;
-  height: 5%;
+  height: 6.5vh;
   line-height: 2.3em;
   width: 100%;
 }
@@ -80,7 +80,7 @@
 .pics-container{
   display: flex;
   flex-flow: wrap;
-  height: 88vh;
+  height: 87vh;
   background-color: wheat;
   justify-content: center;
 }
