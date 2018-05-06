@@ -67,6 +67,8 @@
 
 .selected {
   color: lightblue;
+  position: relative;
+  top: 0;
 }
 .pic-container {
   display: flex;

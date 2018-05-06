@@ -8,11 +8,25 @@ class ListPlaces extends Component {
     places: PropTypes.array.isRequired,
     listElementClicked: PropTypes.func.isRequired
   }
+  
+  scrollList() {
+    const firstPlace = Array.from(document.getElementsByClassName('place-listed'));
+    const placeSelected = Array.from(document.getElementsByClassName('selected'));
+    if (firstPlace.length) firstPlace[0].scrollIntoView();
+    if (placeSelected.length) placeSelected[0].scrollIntoView();
+  }
+
+  componentDidMount() {
+    this.scrollList();
+  }
+
+  componentDidUpdate() {
+    this.scrollList();
+  }
 
   render() {
     const { places, listElementClicked, selectedId } = this.props;
     let placesListed=[];
-    
     for (let i=0; i<places.length; i++) {
       placesListed[i] = places[i];
     }
@@ -30,7 +44,7 @@ class ListPlaces extends Component {
             >
               <p>{place.translatedTitle}</p>
             </li>
-          )})}
+          );})}
       </ul>
 
     );
