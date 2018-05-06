@@ -58,15 +58,15 @@ class App extends Component {
   }
 
   markerClicked=(point) => {
+    // Get the first pic and render it as quick as possible
     searchPicByPosition(point)
       .then((response) => {
         let pics = getPics(response.photos.photo, 1);
         Promise.all(pics)
           .then(response => {
-            let keyValue= 0;
-            let test = response.map((resp) =>(
-              {key: keyValue++, url: resp}));
-            this.setState({pics: test});
+            let firstPic = response.map((resp, index) =>(
+              {key: index, url: resp}));
+            this.setState({pics: firstPic});
           });
       })
       .catch ((error) => {console.log(error);});
@@ -75,6 +75,19 @@ class App extends Component {
       zoom: 15,
       mouseOverId: -1,
       selectedId: point.id});
+
+    // Check and get the other pics to prepare works for PicsPage
+    searchPicByPosition(point)
+      .then((response) => {
+        let pics = getPics(response.photos.photo, 9);
+        Promise.all(pics)
+          .then(response => {
+            let firstPic = response.map((resp, index) =>(
+              {key: index, url: resp}));
+            this.setState({pics: firstPic});
+          });
+      })
+      .catch ((error) => {console.log(error);});
   }
 
   markerOut=() => {
