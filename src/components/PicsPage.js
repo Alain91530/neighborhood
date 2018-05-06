@@ -1,4 +1,5 @@
 import React, { Component } from 'react';         // eslint-disable-line no-unused-vars
+import { Link } from 'react-router-dom'; // eslint-disable-line no-unused-vars
 
 import {MyMap} from './MyMap';                    // eslint-disable-line no-unused-vars
 import {searchPicByPosition, getPic} from '../utils/FlickrAPI'; // eslint-disable-line no-unused-vars
@@ -23,6 +24,10 @@ class PicsPage extends Component {
     return (
       <div>
         <Header />
+        <Link to =  '/' className = "back-to-map">
+          <p>Back to map</p>
+        </Link>
+
         <div className="pics-container">
           <h2 className="pics-title">Photos about {pageTitle.translatedTitle} on Flickr</h2>
           {pics.map((pic) =>
