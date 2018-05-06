@@ -13,19 +13,16 @@ export const searchPicByPosition = ( point ) => {
   );};
 
 export const getPics = ( allPhotos, number ) => {
-  if (allPhotos.length) {
-    allPhotos = allPhotos.filter(
-      photo => (photo.ispublic)&!(photo.isfamily)&!(photo.isfriend)&(photo.title.length)
-    );
-    allPhotos = allPhotos.slice(0, Math.min(number,allPhotos.length));
-    allPhotos = allPhotos.map(
-      photo=> getBlob(
-        `https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}.jpg`
-      ));
-  }
-  else {
-    allPhotos = ['icons/no_pic.jpg']
-  }
+
+  allPhotos = allPhotos.filter(
+    photo => (photo.ispublic)&!(photo.isfamily)&!(photo.isfriend)
+  );
+  allPhotos = allPhotos.slice(0, Math.min(number,allPhotos.length));
+  allPhotos = allPhotos.map(
+    photo=> getBlob(
+      `https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}.jpg`
+    ));
+
   return allPhotos;
 };
 

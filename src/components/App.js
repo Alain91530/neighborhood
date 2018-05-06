@@ -103,37 +103,45 @@ class App extends Component {
     // Get the first pic and render it as quick as possible
     searchPicByPosition(point)
       .then((response) => {
-        let pics = getPics(response.photos.photo, 1);
-        Promise.all(pics)
-          .then(response => {
-            let firstPic = response.map((resp, index) =>(
-              {key: index,
-                url: resp,
-                alt: 'Flickr\'s photo around '+this.state.searchedPoints[this.state.selectedId].translatedTitle}));
-            this.setState({pics: firstPic});
-          });
+
+        if (response.photos.total!=='0') {
+          let pics = getPics(response.photos.photo, 1);
+          Promise.all(pics)
+            .then(response => {
+              let firstPic = response.map((resp, index) =>(
+                {key: index,
+                  url: resp,
+                  alt: 'Flickr\'s photo around '+this.state.searchedPoints[this.state.selectedId].translatedTitle}));
+              this.setState({pics: firstPic});
+            });}
+        else this.setState({pics: [{url: 'icons/no_pic.jpg', key: 0, alt: 'no photo available'}]})
       })
       .catch ((error) => {console.log(error);});
+
+
+    // Check and get the other pics to prepare works for PicsPage
+    searchPicByPosition(point)
+  
+    .then((response) => {
+      if (response.photos.total>1) {
+
+      let pics = getPics(response.photos.photo, 9);
+      Promise.all(pics)
+        .then(response => {
+          let firstPics = response.map((resp, index) =>(
+            {key: index,
+              url: resp,
+              alt: 'Flickr\'s photo around '+this.state.searchedPoints[this.state.selectedId].translatedTitle}));
+          this.setState({pics: firstPics});
+        });}
+    })
+    .catch ((error) => {console.log(error);});
     this.setState({
       mapCenter: point.position,
       zoom: 15,
       mouseOverId: -1,
       selectedId: point.id});
 
-    // Check and get the other pics to prepare works for PicsPage
-    searchPicByPosition(point)
-      .then((response) => {
-        let pics = getPics(response.photos.photo, 9);
-        Promise.all(pics)
-          .then(response => {
-            let firstPics = response.map((resp, index) =>(
-              {key: index,
-                url: resp,
-                alt: 'Flickr\'s photo around '+this.state.searchedPoints[this.state.selectedId].translatedTitle}));
-            this.setState({pics: firstPics});
-          });
-      })
-      .catch ((error) => {console.log(error);});
   }
 
   /**
