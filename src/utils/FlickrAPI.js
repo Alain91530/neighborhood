@@ -6,7 +6,6 @@ const request = API+'?&api_key='+APIKey;
 export const searchPicByPosition = ( point ) => {
   let text = point.title.slice(0,point.title.indexOf(' '));
   (text==='hotel') ? text = '&text=monument' : text = '&text='+text;
-  console.log(text);
   const url = `${request}&method=${picSearch}&lat=${point.position.lat}&lon=${point.position.lng}${text}`;
   return(fetch(url)
     .then(response => {
@@ -32,7 +31,6 @@ export const getPic = ( allPhotos ) => {
       imgUrl = imgUrl+`${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}.jpg`;
       img = {key: photo.id, url: imgUrl};
       imgUrl = getBlob(imgUrl);
-      console.log(imgUrl)
       firstImgs.push(img);
     }}
   else {

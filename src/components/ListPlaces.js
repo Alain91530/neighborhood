@@ -8,7 +8,7 @@ class ListPlaces extends Component {
     places: PropTypes.array.isRequired,
     listElementClicked: PropTypes.func.isRequired
   }
-  
+
   scrollList() {
     const firstPlace = Array.from(document.getElementsByClassName('place-listed'));
     const placeSelected = Array.from(document.getElementsByClassName('selected'));

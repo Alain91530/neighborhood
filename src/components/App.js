@@ -1,23 +1,56 @@
 
-
+/**
+ * @description import React and router
+ */
 import React, { Component } from 'react';         // eslint-disable-line no-unused-vars
-import escapeRegExp from 'escape-string-regexp';
 import { BrowserRouter, Route } from 'react-router-dom'; // eslint-disable-line no-unused-vars
 
-import {MyMap} from './MyMap';                          // eslint-disable-line no-unused-vars
-import {searchPicByPosition, getPic} from '../utils/FlickrAPI'; // eslint-disable-line no-unused-vars
+/**
+ * @description import components
+ */
+import {MyMap} from './MyMap';                    // eslint-disable-line no-unused-vars
 import SideBar from './SideBar';                  // eslint-disable-line no-unused-vars
 import Header from './Header';                    // eslint-disable-line no-unused-vars
 import Footer from './Footer';                    // eslint-disable-line no-unused-vars
+import PicsPage from './PicsPage';                // eslint-disable-line no-unused-vars
 
+/**
+ * @description import json data
+ */
 import Places from '../data/places';
 import Translation from '../data/translation';
 
-import '../styles/App.css';
-import PicsPage from './PicsPage';
+/**
+ * @description import regexp
+ */
+import escapeRegExp from 'escape-string-regexp';
 
+/**
+ * @description import helper for flikr API
+ */
+import {searchPicByPosition, getPic} from '../utils/FlickrAPI'; // eslint-disable-line no-unused-vars
+
+/**
+ * @description import css file for the app
+ */
+import '../styles/App.css';
+
+/**
+ * @description main component
+ */
 class App extends Component {
 
+/**
+ * @description set the default state
+ * @type { mapCenter: Object }
+ * @type { zoom: Number }
+ * @type { pointsOfInterest: Array }
+ * @type { searchedPoints: Array }
+ * @type { query: String}
+ * @type { selectedId: Number}
+ * @type { mouseOverId: Number}
+ * @type { pics: Array }
+ */
   state = {
     mapCenter: { lat: 43.591236, lng: 3.258363 },
     zoom: 9,
@@ -28,14 +61,17 @@ class App extends Component {
     mouseOverId: -1,
     pics: []
   }
+  /**
+  * @description Get the json files containing the places of interest
+  * @description French title is kept to search Flickr for better results.
 
+  */
   componentDidMount() {
-    // Get the json files containing the places of interest
-    // and translation then construct one array with translation
-    // French title is keeped to search wikimedia.
-    // Source of data wikipedia kml file created with open data
-    // project of french government mérimée(historical monuments of
-    // France). Json convetion and translation by Alain Cadenat
+
+    /** Source of data wikipedia kml file created with open data
+     *  project of french government mérimée(historical monuments of
+     *  France). Json convertion and translation by Alain Cadenat
+     */
 
     let myPlaces= Places;
     const translatedPlaces= Translation;
@@ -44,12 +80,14 @@ class App extends Component {
       myPlaces[i].id = i;
     }
 
-    // Update the state to render the markers
     this.setState({
       pointsOfInterest: myPlaces,
       searchedPoints: myPlaces});
   }
 
+/**
+ * @description callback to close the Infobox and re-zoom and center the map
+ */
   infoBoxClosed=() => {
     this.setState({
       mapCenter: { lat: 43.591236, lng: 3.258363 },
@@ -58,13 +96,16 @@ class App extends Component {
       pics:[]});
   }
 
+  /**
+   * @description callback to open the infoboxwhen marker or list is clicked
+   */
   markerClicked=(point) => {
     searchPicByPosition(point)
       .then((resp) => {
         let pics = getPic(resp.photos.photo);
         this.setState({pics: pics});
       })
-      .catch ((error) => {console.log(error)});
+      .catch ((error) => {console.log(error);});
     this.setState({
       mapCenter: point.position,
       zoom: 15,
@@ -72,6 +113,9 @@ class App extends Component {
       selectedId: point.id});
   }
 
+  /**
+   * @description callback to change the marker on pointer out
+   */
   markerOut=() => {
     this.setState({mouseOverId: -1});
   }
@@ -80,11 +124,14 @@ class App extends Component {
     this.setState({mouseOverId: point.id});
   }
 
+  /**
+   * @description callback to update the list according to query
+   */
   updateQuery = (query) => {
     let searchedPoints = this.state.searchedPoints;
     const pointsOfInterest = this.state.pointsOfInterest;
-    /*
-    * No need to search for places if query is empty (after backspacing or
+    /**
+     * No need to search for places if query is empty (after backspacing or
      * deleting), but we need to set the new state
      */
     this.setState({query});
@@ -98,6 +145,9 @@ class App extends Component {
     this.setState({searchedPoints});
   }
 
+  /**
+   * @description render app component
+   */
   render() {
     const { searchedPoints,
       selectedId,
