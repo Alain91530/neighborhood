@@ -26,7 +26,12 @@ class PicsPage extends Component {
         <div className="pics-container">
           <h2 className="pics-title">Photos about {pageTitle.translatedTitle} on Flickr</h2>
           {pics.map((pic) =>
-            <img className="pic-of-place" key={pic.key} src={pic.url} alt="" />
+            <img
+              className="pic-of-place"
+              key={pic.key}
+              src={pic.url}
+              alt={pic.alt}
+            />
           )}
         </div>
         <Footer />

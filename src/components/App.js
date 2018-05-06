@@ -5,15 +5,10 @@
 import React, { Component } from 'react';         // eslint-disable-line no-unused-vars
 import { BrowserRouter, Route } from 'react-router-dom'; // eslint-disable-line no-unused-vars
 
-<<<<<<< HEAD
 /**
  * @description import components
  */
 import {MyMap} from './MyMap';                    // eslint-disable-line no-unused-vars
-=======
-import {MyMap} from './MyMap';                          // eslint-disable-line no-unused-vars
-import {searchPicByPosition, getPics} from '../utils/FlickrAPI'; // eslint-disable-line no-unused-vars
->>>>>>> fetch-blob
 import SideBar from './SideBar';                  // eslint-disable-line no-unused-vars
 import Header from './Header';                    // eslint-disable-line no-unused-vars
 import Footer from './Footer';                    // eslint-disable-line no-unused-vars
@@ -33,7 +28,7 @@ import escapeRegExp from 'escape-string-regexp';
 /**
  * @description import helper for flikr API
  */
-import {searchPicByPosition, getPic} from '../utils/FlickrAPI'; // eslint-disable-line no-unused-vars
+import {searchPicByPosition, getPics} from '../utils/FlickrAPI'; // eslint-disable-line no-unused-vars
 
 /**
  * @description import css file for the app
@@ -90,7 +85,7 @@ class App extends Component {
       searchedPoints: myPlaces});
   }
 
-/**
+  /**
  * @description callback to close the Infobox and re-zoom and center the map
  */
   infoBoxClosed=() => {
@@ -112,7 +107,9 @@ class App extends Component {
         Promise.all(pics)
           .then(response => {
             let firstPic = response.map((resp, index) =>(
-              {key: index, url: resp}));
+              {key: index,
+                url: resp,
+                alt: 'Flickr\'s photo around '+this.state.searchedPoints[this.state.selectedId].translatedTitle}));
             this.setState({pics: firstPic});
           });
       })
@@ -129,9 +126,11 @@ class App extends Component {
         let pics = getPics(response.photos.photo, 9);
         Promise.all(pics)
           .then(response => {
-            let firstPic = response.map((resp, index) =>(
-              {key: index, url: resp}));
-            this.setState({pics: firstPic});
+            let firstPics = response.map((resp, index) =>(
+              {key: index,
+                url: resp,
+                alt: 'Flickr\'s photo around '+this.state.searchedPoints[this.state.selectedId].translatedTitle}));
+            this.setState({pics: firstPics});
           });
       })
       .catch ((error) => {console.log(error);});
