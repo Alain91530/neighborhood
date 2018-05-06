@@ -5,10 +5,15 @@
 import React, { Component } from 'react';         // eslint-disable-line no-unused-vars
 import { BrowserRouter, Route } from 'react-router-dom'; // eslint-disable-line no-unused-vars
 
+<<<<<<< HEAD
 /**
  * @description import components
  */
 import {MyMap} from './MyMap';                    // eslint-disable-line no-unused-vars
+=======
+import {MyMap} from './MyMap';                          // eslint-disable-line no-unused-vars
+import {searchPicByPosition, getPics} from '../utils/FlickrAPI'; // eslint-disable-line no-unused-vars
+>>>>>>> fetch-blob
 import SideBar from './SideBar';                  // eslint-disable-line no-unused-vars
 import Header from './Header';                    // eslint-disable-line no-unused-vars
 import Footer from './Footer';                    // eslint-disable-line no-unused-vars
@@ -100,10 +105,16 @@ class App extends Component {
    * @description callback to open the infoboxwhen marker or list is clicked
    */
   markerClicked=(point) => {
+    // Get the first pic and render it as quick as possible
     searchPicByPosition(point)
-      .then((resp) => {
-        let pics = getPic(resp.photos.photo);
-        this.setState({pics: pics});
+      .then((response) => {
+        let pics = getPics(response.photos.photo, 1);
+        Promise.all(pics)
+          .then(response => {
+            let firstPic = response.map((resp, index) =>(
+              {key: index, url: resp}));
+            this.setState({pics: firstPic});
+          });
       })
       .catch ((error) => {console.log(error);});
     this.setState({
@@ -111,6 +122,19 @@ class App extends Component {
       zoom: 15,
       mouseOverId: -1,
       selectedId: point.id});
+
+    // Check and get the other pics to prepare works for PicsPage
+    searchPicByPosition(point)
+      .then((response) => {
+        let pics = getPics(response.photos.photo, 9);
+        Promise.all(pics)
+          .then(response => {
+            let firstPic = response.map((resp, index) =>(
+              {key: index, url: resp}));
+            this.setState({pics: firstPic});
+          });
+      })
+      .catch ((error) => {console.log(error);});
   }
 
   /**

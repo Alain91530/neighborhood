@@ -5,45 +5,32 @@ const request = API+'?&api_key='+APIKey;
 
 export const searchPicByPosition = ( point ) => {
   let text = point.title.slice(0,point.title.indexOf(' '));
-  (text==='hotel') ? text = '&text=monument' : text = '&text='+text;
+  (text==='hotel'|| text==='maison') ? text = '&text=monument' : text = '&text='+text;
   const url = `${request}&method=${picSearch}&lat=${point.position.lat}&lon=${point.position.lng}${text}`;
   return(fetch(url)
-    .then(response => {
-      return (response.json());
-    })
-    .catch(error => {
-      console.log(error);
-    })
+    .then (response =>response.json())
+    .catch(error => {console.log(error);})
   );};
 
-export const getPic = ( allPhotos ) => {
-  let firstImgs = [];
-  allPhotos = allPhotos.filter(
-    photo => (photo.ispublic)&!(photo.isfamily)&!(photo.isfriend)&(photo.title.length)
-  );
-  let imgUrl;
-  let img;
-
+export const getPics = ( allPhotos, number ) => {
   if (allPhotos.length) {
-    for (let i = 0; i<allPhotos.length; i++) {
-      imgUrl = 'https://farm';
-      const photo = allPhotos[i];
-      imgUrl = imgUrl+`${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}.jpg`;
-      img = {key: photo.id, url: imgUrl};
-      imgUrl = getBlob(imgUrl);
-      firstImgs.push(img);
-    }}
-  else {
-    firstImgs.push({key: 0, url: 'icons/no_pic.jpg'});
+    allPhotos = allPhotos.filter(
+      photo => (photo.ispublic)&!(photo.isfamily)&!(photo.isfriend)&(photo.title.length)
+    );
+    allPhotos = allPhotos.slice(0, Math.min(number,allPhotos.length));
+    allPhotos = allPhotos.map(
+      photo=> getBlob(
+        `https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}.jpg`
+      ));
   }
-  return firstImgs;
-
+  else {
+    allPhotos = ['icons/no_pic.jpg']
+  }
+  return allPhotos;
 };
 
-const getBlob = (url) => {
-  fetch(url)
-    .then ((response) => {
-      return(response.blob());
-    })
-    .then((myBlob) => {return(URL.createObjectURL(myBlob));}
-    );};
+const getBlob= (url) =>
+  fetch(`${url}`)
+    .then (response => response.blob())
+    .then(myBlob => URL.createObjectURL(myBlob));
+
