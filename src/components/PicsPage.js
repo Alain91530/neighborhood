@@ -14,6 +14,10 @@ import '../styles/App.css';
 
 class PicsPage extends Component {
 
+  componentWillUnmount() {
+    this.props.resetQuery();
+  }
+
   render() {
 
     const { selectedId, searchedPoints } = this.props;

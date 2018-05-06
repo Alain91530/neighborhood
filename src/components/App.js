@@ -113,7 +113,7 @@ class App extends Component {
                   alt: 'Flickr\'s photo around '+this.state.searchedPoints[this.state.selectedId].translatedTitle}));
               this.setState({pics: firstPic});
             });}
-        else this.setState({pics: [{url: 'icons/no_pic.jpg', key: 0, alt: 'no photo available'}]})
+        else this.setState({pics: [{url: 'icons/no_pic.jpg', key: 0, alt: 'no photo available'}]});
       })
       .catch ((error) => {console.log(error);});
 
@@ -139,7 +139,6 @@ class App extends Component {
       zoom: 15,
       mouseOverId: -1,
       selectedId: point.id});
-
   }
 
   /**
@@ -152,7 +151,9 @@ class App extends Component {
   markerOver=(point) => {
     this.setState({mouseOverId: point.id});
   }
-
+  resetQuery =() => {
+    this.updateQuery('')
+  }
   /**
    * @description callback to update the list according to query
    */
@@ -163,6 +164,7 @@ class App extends Component {
      * No need to search for places if query is empty (after backspacing or
      * deleting), but we need to set the new state
      */
+    if (this.state.selectedId!==-1) this.infoBoxClosed();
     this.setState({query});
     if ( query ) {
       const match = new RegExp( escapeRegExp( query ), 'i' );
@@ -227,6 +229,7 @@ class App extends Component {
                 pics = { pics }
                 searchedPoints = { searchedPoints }
                 selectedId ={ selectedId }
+                resetQuery = {this.resetQuery}
               />
             </div>
           )} />
