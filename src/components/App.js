@@ -79,7 +79,7 @@ class App extends Component {
       myPlaces[i].translatedTitle = translatedPlaces[i].translatedTitle;
       myPlaces[i].id = i;
     }
-
+console.log (myPlaces)
     this.setState({
       pointsOfInterest: myPlaces,
       searchedPoints: myPlaces});
@@ -107,10 +107,11 @@ class App extends Component {
           let pics = getPics(response.photos.photo, 1);
           Promise.all(pics)
             .then(response => {
+              console.log(point.id)
               let firstPic = response.map((resp, index) =>(
                 {key: index,
                   url: resp,
-                  alt: 'Flickr\'s photo around '+this.state.searchedPoints[this.state.selectedId].translatedTitle}));
+                  alt: 'Flickr\'s photo around '+this.state.pointsOfInterest[point.id].translatedTitle}));
               this.setState({pics: firstPic});
             });}
         else this.setState({pics: [{url: 'icons/no_pic.jpg', key: 0, alt: 'no photo available'}]});
@@ -129,7 +130,7 @@ class App extends Component {
               let firstPics = response.map((resp, index) =>(
                 {key: index,
                   url: resp,
-                  alt: 'Flickr\'s photo around '+this.state.searchedPoints[this.state.selectedId].translatedTitle}));
+                  alt: 'Flickr\'s photo around '+this.state.pointsOfInterest[point.id].translatedTitle}));
               this.setState({pics: firstPics});
             });}
       })
