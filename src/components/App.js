@@ -3,7 +3,7 @@
  * @description import React and router
  */
 import React, { Component } from 'react';         // eslint-disable-line no-unused-vars
-import { BrowserRouter, Route } from 'react-router-dom'; // eslint-disable-line no-unused-vars
+import { BrowserRouter as Router, Route } from 'react-router-dom'; // eslint-disable-line no-unused-vars
 
 /**
  * @description import components
@@ -79,7 +79,6 @@ class App extends Component {
       myPlaces[i].translatedTitle = translatedPlaces[i].translatedTitle;
       myPlaces[i].id = i;
     }
-console.log (myPlaces)
     this.setState({
       pointsOfInterest: myPlaces,
       searchedPoints: myPlaces});
@@ -107,7 +106,6 @@ console.log (myPlaces)
           let pics = getPics(response.photos.photo, 1);
           Promise.all(pics)
             .then(response => {
-              console.log(point.id)
               let firstPic = response.map((resp, index) =>(
                 {key: index,
                   url: resp,
@@ -153,7 +151,7 @@ console.log (myPlaces)
     this.setState({mouseOverId: point.id});
   }
   resetQuery =() => {
-    this.updateQuery('')
+    this.updateQuery('');
   }
   /**
    * @description callback to update the list according to query
@@ -190,7 +188,7 @@ console.log (myPlaces)
       query } = this.state;
 
     return (
-      <BrowserRouter>
+      <Router>
         <div>
           <Route exact path='/' render = {() => (
             <div>
@@ -235,7 +233,7 @@ console.log (myPlaces)
             </div>
           )} />
         </div>
-      </BrowserRouter>
+      </Router>
     );
   }
 }

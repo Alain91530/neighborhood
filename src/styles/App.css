@@ -92,6 +92,10 @@
   text-align: center;
 }
 
+.pics-page {
+  width: 100%;
+}
+
 .pics-container{
   display: flex;
   flex-flow: wrap;
