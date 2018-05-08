@@ -51,12 +51,12 @@
   text-align: center;
   font-size: 0.8em;
   height: 6.5vh;
-  line-height: 2.3em;
+  padding-top: 0.2vh;
   width: 100%;
 }
 
 .footer-text {
-  margin: 0.3vh;
+  font-size: 1.8vh;
 }
 
 .header {
@@ -88,7 +88,7 @@
 
 .list-of-places {
   background-color:#05265b;
-  height: 40vh;
+  height: 35vh;
   list-style: none;
   overflow: auto;
   margin: 1vw;
@@ -103,6 +103,7 @@
 
 .place-listed {
   cursor: pointer;
+  font-size: 0.9em;
 }
 
 .pic-container {
@@ -183,4 +184,12 @@
 .sidebar-title {
   font-size: 2.8vh;
   margin-left: 10px;
+}
+@media (max-width: 650px) {
+  .sidebar {
+    width: 50%;
+  }
+  .list-of-places {
+    height: 35%;
+  }
 }
