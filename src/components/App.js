@@ -100,6 +100,7 @@ class App extends Component {
    */
   markerClicked=(point) => {
     // Get the first pic and render it as quick as possible
+    this.setState({pics: [{url: 'icons/image-loading.png',key: 0, alt: ''}]});
     searchPicByPosition(point)
       .then((response) => {
         if (response.photos.total!=='0') {

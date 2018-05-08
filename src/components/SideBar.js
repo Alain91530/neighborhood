@@ -9,11 +9,22 @@ import ShowPlace from './ShowPlace';      // eslint-disable-line no-unused-vars
 
 class SideBar extends Component {
 
+  state = { menuOn: false }
+
+  toggleMenu = () => {
+    const menuOn = this.state.menuOn;
+    this.setState({ menuOn: !menuOn});
+  }
+
   render() {
     const { places, pics, listElementClicked, updateQuery, query, selectedId } =this.props;
-
+    let classMenu='';
+    (this.state.menuOn) ? classMenu='sidebar menu-open' : classMenu='sidebar menu-closed';
     return(
-      <aside className= "sidebar">
+      <aside className= {classMenu}>
+        <div
+          onClick={ this.toggleMenu }
+          className="menu-icon"></div>
         <h4 className = "sidebar-title"> Search a place or a monument</h4>
         <SearchPlace
           query = { query}
@@ -27,9 +38,10 @@ class SideBar extends Component {
         <ShowPlace
           pics = {pics}
         />
-        {(pics.length>1) && (<div className="pics-link"><Link
-          
-          to='/pics'>More photos</Link></div>)}
+        {(pics.length>1) && (<Link
+          className="pics-link"
+          to='/pics'> See more photos...</Link>
+        )}
 
       </aside>
     );

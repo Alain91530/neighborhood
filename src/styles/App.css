@@ -6,16 +6,37 @@
   background-image: url("../icons/arrow-back.svg");
   background-color: lightblue;
   background-repeat: no-repeat;
-  background-size: 50px;
-  color: white;
+  background-size: 5vh;
   display: block;
   font-size: 0;
-  height: 50px;
+  height: 5vh;
   position: absolute;
-  left: 5vw;
+  left: 4.6vw;
   top: 0.45vh;
-  width: 50px;
-  border-radius: 30px;}
+  width: 5vh;
+  border-radius: 2.5vh;
+}
+
+ .menu-icon {
+  background-image: url("../icons/hamburger.png");
+  background-color: rgb(27, 74, 128);
+  background-repeat: no-repeat;
+  background-size: contain;
+  display: block;
+  font-size: 0;
+  height: 4vh;
+  position: fixed;
+  left: 5vw;
+  top: 1vh;
+  width: 4vh;
+}
+
+.menu-closed {
+  left: -100%;
+}
+.menu-open {
+  left: 0%;
+}
 
 .container {
   display: flex;
@@ -30,22 +51,27 @@
   text-align: center;
   font-size: 0.8em;
   height: 6.5vh;
-  line-height: 2.3em;
+  padding-top: 0.2vh;
   width: 100%;
 }
 
 .footer-text {
-  margin: 0.3vh;
+  font-size: 1.8vh;
 }
 
 .header {
   background-color:rgb(27, 74, 128);
   color: tan;
   font-size: 2vh;
-  height: 5vh;
-  padding-top: 1vh;
+  height: 5.8vh;
+  line-height: 2.5em;
   text-align: center;
   width: 100%;
+}
+
+.header-title {
+  font-size: 1.3em;
+  margin: 0;
 }
 
 .info-point {
@@ -60,31 +86,26 @@
   max-width: 220px;
 }
 
-.header-title {
-  margin: 0;
-}
-
 .list-of-places {
-  height: 45vh;
+  background-color:#05265b;
+  height: 35vh;
   list-style: none;
   overflow: auto;
+  margin: 1vw;
+  padding: 1vw;
   width: 80%;
 }
 
 .map-container {
-  width: 75%;
+  width: 100%;
   height: 87vh;
 }
 
 .place-listed {
   cursor: pointer;
+  font-size: 0.9em;
 }
 
-.selected {
-  color: lightblue;
-  position: relative;
-  top: 0;
-}
 .pic-container {
   display: flex;
   flex-flow: wrap;
@@ -113,19 +134,24 @@
 }
 
 .pics-link {
-  color: rgb(27, 74, 128);
-  margin-left: 25%;
-  box-shadow: 2px 2px grey;
+  background-image: url('../icons/add.svg');
+  background-size: contain;
+  border-radius: 30px;
   background-color: tan;
-  border-style: double;
-  border-radius: 25px;
-  text-align: center;
-  width: 50%;
+  cursor: pointer;
+  font-size: 0;
+  height: 5vh;
+  margin-left: 45%;
+  min-width: 40px;
+  min-height: 40px;
+  position: absolute;
+  bottom: 2%;
+  width: 5vh;
 }
 
 .pic-of-place {
   border-style: solid;
-  margin: 7%;
+  margin: 1vh;
   max-width: 85%;
   max-height: 24vh;
 }
@@ -136,22 +162,41 @@
 }
 
 .search-place {
+  background-color: lightblue;
   margin-left: 10px;
+  margin-bottom: 1vh;
   width: 80%;
+}
+
+.selected {
+  color: lightblue;
+  position: relative;
+  top: 0;
 }
 
 .sidebar {
   background-color:rgb(27, 74, 128);
   color: tan;
-  height: 90vh;
-  width: 25%;
+  width: 30%;
+  position: absolute;
+  top: 5vh;
+  height: 88.05vh;
+  z-index: 1000;
+  transition: .5s;
+  overflow: hidden;
 }
 
 .sidebar-title {
+  font-size: 2vh;
+  margin-bottom: 1vh;
   margin-left: 10px;
 }
 
-.pics-link  a {
-  color: rgb(27, 74, 128);
-  text-decoration: none;
+@media (max-width: 361px) {
+  .sidebar {
+    width: 60%;
+  }
+  .list-of-places {
+    height: 35%;
+  }
 }
