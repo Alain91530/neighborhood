@@ -139,11 +139,12 @@
   border-radius: 25px;
   color: rgb(27, 74, 128);
   margin-left: 25%;
-  text-decoration: none;
   text-align: center;
   width: 50%;
 }
-
+.pics-text-link {
+  text-decoration: none;
+}
 .pic-of-place {
   border-style: solid;
   margin: 1vh;

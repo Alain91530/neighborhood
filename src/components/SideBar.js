@@ -40,7 +40,7 @@ class SideBar extends Component {
         />
         {(pics.length>1) && (<div className="pics-link"><Link
           
-          to='/pics'>More photos</Link></div>)}
+          to='/pics'> See more photos...</Link></div>)}
 
       </aside>
     );
