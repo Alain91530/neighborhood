@@ -38,9 +38,10 @@ class SideBar extends Component {
         <ShowPlace
           pics = {pics}
         />
-        {(pics.length>1) && (<div className="pics-link"><Link
-          
-          to='/pics'> See more photos...</Link></div>)}
+        {(pics.length>1) && (<Link
+          className="pics-link"
+          to='/pics'> See more photos...</Link>
+        )}
 
       </aside>
     );

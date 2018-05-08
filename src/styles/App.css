@@ -70,7 +70,7 @@
 }
 
 .header-title {
-  font-size: 1.75em;
+  font-size: 1.3em;
   margin: 0;
 }
 
@@ -134,18 +134,19 @@
 }
 
 .pics-link {
-  box-shadow: 2px 2px grey;
+  background-image: url('../icons/add.svg');
+  background-size: contain;
+  border-radius: 3vh;
   background-color: tan;
-  border-style: double;
-  border-radius: 25px;
-  color: rgb(27, 74, 128);
-  margin-left: 25%;
-  text-align: center;
-  width: 50%;
+  cursor: pointer;
+  font-size: 0;
+  height: 5vh;
+  margin-left: 45%;
+  position: absolute;
+  bottom: 2%;
+  width: 5vh;
 }
-.pics-text-link {
-  text-decoration: none;
-}
+
 .pic-of-place {
   border-style: solid;
   margin: 1vh;
@@ -159,7 +160,9 @@
 }
 
 .search-place {
+  background-color: lightblue;
   margin-left: 10px;
+  margin-bottom: 1vh;
   width: 80%;
 }
 
@@ -182,12 +185,14 @@
 }
 
 .sidebar-title {
-  font-size: 2.8vh;
+  font-size: 2vh;
+  margin-bottom: 1vh;
   margin-left: 10px;
 }
-@media (max-width: 650px) {
+
+@media (max-width: 361px) {
   .sidebar {
-    width: 50%;
+    width: 60%;
   }
   .list-of-places {
     height: 35%;
