@@ -18,11 +18,11 @@ class SideBar extends Component {
 
   render() {
     const { places, pics, listElementClicked, updateQuery, query, selectedId } =this.props;
-let classMenu='';
-(this.state.menuOn) ? classMenu="sidebar menu-open" : classMenu="sidebar menu-closed"
+    let classMenu='';
+    (this.state.menuOn) ? classMenu='sidebar menu-open' : classMenu='sidebar menu-closed';
     return(
       <aside className= {classMenu}>
-      <div
+        <div
           onClick={ this.toggleMenu }
           className="menu-icon"></div>
         <h4 className = "sidebar-title"> Search a place or a monument</h4>

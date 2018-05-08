@@ -20,7 +20,7 @@ export const getPics = ( allPhotos, number ) => {
   allPhotos = allPhotos.slice(0, Math.min(number,allPhotos.length));
   allPhotos = allPhotos.map(
     photo=> getBlob(
-      `https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}.jpg`
+      `https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_n.jpg`
     ));
 
   return allPhotos;

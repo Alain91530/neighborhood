@@ -146,7 +146,7 @@
 
 .pic-of-place {
   border-style: solid;
-  margin: 7%;
+  margin: 1vh;
   max-width: 85%;
   max-height: 24vh;
 }
@@ -180,5 +180,6 @@
 }
 
 .sidebar-title {
+  font-size: 2.8vh;
   margin-left: 10px;
 }
