@@ -27,9 +27,10 @@ import Places from '../data/places';
 import Translation from '../data/translation';
 
 /**
- * @description import regexp
+ * @description import regexp and sort
  */
 import escapeRegExp from 'escape-string-regexp';
+import sortBy from 'sort-by';
 
 /**
  * @description import helper for flikr API
@@ -81,10 +82,12 @@ class App extends Component {
 
     let myPlaces= Places;
     const translatedPlaces= Translation;
+
     for (let i=0;i<myPlaces.length; i++) {
       myPlaces[i].translatedTitle = translatedPlaces[i].translatedTitle;
       myPlaces[i].id = i;
     }
+    myPlaces.sort(sortBy('translatedTitle'));
     this.setState({
       pointsOfInterest: myPlaces,
       searchedPoints: myPlaces});
