@@ -23,6 +23,7 @@ export const MyMap = compose(
       zoom={props.zoom}
       center={props.mapCenter}
       defaultOptions={{ styles: MapStyle}}
+      mapTypeId='terrain'
     > { props.placesOfInterest.map(point => {
         let markerUrl='icons/monument-historique.png';
         if (point.id===props.selectedId) markerUrl='icons/monument-historique-selected.png';

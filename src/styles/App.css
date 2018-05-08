@@ -136,12 +136,14 @@
 .pics-link {
   background-image: url('../icons/add.svg');
   background-size: contain;
-  border-radius: 3vh;
+  border-radius: 30px;
   background-color: tan;
   cursor: pointer;
   font-size: 0;
   height: 5vh;
   margin-left: 45%;
+  min-width: 40px;
+  min-height: 40px;
   position: absolute;
   bottom: 2%;
   width: 5vh;
