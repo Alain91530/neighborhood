@@ -16,7 +16,8 @@ let filesToCache = [
   '../icons/add.svg',
   '../icons/arrow-back.svg',
   '../icons/hamburger.png',
-  'index.html'
+  'index.html',
+  '/icons/no_pics.jpg'
 ];
 
 self.addEventListener('install', function(event) {
@@ -50,9 +51,8 @@ self.addEventListener('fetch', function(event) {
           return response;
         })
         // Fetch return an error, we catch it and display something
-        .catch(function (err, response) {
-          debugger;
-          console.log('erreur:',err, response)
+        .catch(function (err,event) {
+          console.log('erreur:',err, event)
         });
     }
   }));

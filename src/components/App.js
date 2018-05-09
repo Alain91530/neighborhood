@@ -69,8 +69,8 @@ class App extends Component {
   /**
   * @description Get the json files containing the places of interest
   * @description French title is kept to search Flickr for better results.
-
   */
+
   componentDidMount() {
     /**
  * @attribution
@@ -224,7 +224,8 @@ class App extends Component {
                 />
 
                 <div className="map-container">
-                  <MyMap
+                  {(navigator.onLine)&&( <MyMap
+                    checkMapLoaded =  {this.checkMapLoaded}
                     mapCenter = { mapCenter }
                     placesOfInterest={ searchedPoints }
                     selectedId={ selectedId }
@@ -234,7 +235,8 @@ class App extends Component {
                     markerOver={this.markerOver}
                     markerOut={this.markerOut}
                     infoBoxClosed={this.infoBoxClosed}
-                  />
+                  />)}
+                  {(!navigator.onLine)&&(<h1>You seem to be offline, no interactive map available</h1>)}
                 </div>
               </div>
               <Footer />
