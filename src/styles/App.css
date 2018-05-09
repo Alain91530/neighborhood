@@ -169,6 +169,22 @@
   width: 100%;
 }
 
+.offline-map {
+  background-image: url('/images/offline_map.png');
+  background-size: cover;
+  height: 87vh;
+  text-align: center;
+  width: 100%;
+}
+
+.offline-text {
+  margin: 0;
+  padding: 1vh;
+  position: relative;
+  top: 30vh;
+  background-color: #908c8c9e;
+}
+
 .search-place {
   background-color: lightblue;
   margin-left: 10px;

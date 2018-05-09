@@ -224,19 +224,28 @@ class App extends Component {
                 />
 
                 <div className="map-container">
-                  {(navigator.onLine)&&( <MyMap
-                    checkMapLoaded =  {this.checkMapLoaded}
-                    mapCenter = { mapCenter }
-                    placesOfInterest={ searchedPoints }
-                    selectedId={ selectedId }
-                    pics = {pics}
-                    mouseOverId = { mouseOverId}
-                    markerClicked={this.markerClicked}
-                    markerOver={this.markerOver}
-                    markerOut={this.markerOut}
-                    infoBoxClosed={this.infoBoxClosed}
-                  />)}
-                  {(!navigator.onLine)&&(<h1>You seem to be offline, no interactive map available</h1>)}
+                  {(navigator.onLine)&&(
+                    <MyMap
+                      checkMapLoaded =  {this.checkMapLoaded}
+                      mapCenter = { mapCenter }
+                      zoom = { zoom }
+                      placesOfInterest={ searchedPoints }
+                      selectedId={ selectedId }
+                      pics = {pics}
+                      mouseOverId = { mouseOverId}
+                      markerClicked={this.markerClicked}
+                      markerOver={this.markerOver}
+                      markerOut={this.markerOut}
+                      infoBoxClosed={this.infoBoxClosed}
+                    />)}
+                  {(!navigator.onLine)&&(
+                    <div className="offline-map">
+                      <div className="offline-text">
+                        <h3>You seem to be offline, no interactive map available</h3>
+                        <p>You still can view the photos of the places you already visited</p>
+                        <p>by using the search menu</p>
+                      </div>
+                    </div>)}
                 </div>
               </div>
               <Footer />

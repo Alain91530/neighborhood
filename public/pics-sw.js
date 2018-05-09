@@ -13,11 +13,12 @@ let filesToCache = [
   './index.css',
   './registerPicsServiceWorker.js',
   '../styles/App.css',
-  '../icons/add.svg',
+  'images/offline_map.png',
+/*  '../icons/add.svg',
   '../icons/arrow-back.svg',
-  '../icons/hamburger.png',
-  'index.html',
-  '/icons/no_pics.jpg'
+  '../icons/hamburger.png',*/
+  'index.html'
+ /* '/icons/no_pics.jpg'*/
 ];
 
 self.addEventListener('install', function(event) {
