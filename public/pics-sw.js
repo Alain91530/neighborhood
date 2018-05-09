@@ -1,6 +1,22 @@
 let filesToCache = [
   '../data/places.json',
-  '../data/translation.json'
+  '../data/translation.json',
+  '../components/App.js',
+  '../components/Footer.js',
+  '../components/Header.js',
+  '../components/ListPlaces.js',
+  '../components/MyMap.js',
+  '../components/PicsPage.js',
+  '../components/SearchPlace.js',
+  '../components/ShowPlace.js',
+  '../components/SideBar.js',
+  './index.css',
+  './registerPicsServiceWorker.js',
+  '../styles/App.css',
+  '../icons/add.svg',
+  '../icons/arrow-back.svg',
+  '../icons/hamburger.png',
+  'index.html'
 ];
 
 self.addEventListener('install', function(event) {
@@ -24,19 +40,19 @@ self.addEventListener('fetch', function(event) {
         .then(function (response) {
         // fetch resolved we cache the url and return the response
           caches.open('neighborhood-cache').then(function (cache) {
-            // Don't cache google APIs fetch
+            // Don't cache google APIs fetch (forbidden by terms of use)
             if(!(event.request.url.startsWith('https://maps.googleapis.com')||
                  event.request.url.startsWith('https://maps.gstatic.com/mapfiles')||
                  event.request.url.startsWith('https://fonts.googleapis.com'))) {
-              console.log(event.request.url);
               cache.add(event.request);
             }
           });
           return response;
         })
         // Fetch return an error, we catch it and display something
-        .catch(function () {
-          return caches.match('img/1.jpg');
+        .catch(function (err, response) {
+          debugger;
+          console.log('erreur:',err, response)
         });
     }
   }));
