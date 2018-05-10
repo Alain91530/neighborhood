@@ -20,6 +20,7 @@ export const MyMap = compose(
 )((props) => {
   return (
     <GoogleMap
+    tabindex= "100"
       zoom={props.zoom}
       center={props.mapCenter}
       defaultOptions={{ styles: MapStyle}}

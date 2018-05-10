@@ -23,8 +23,12 @@ class SideBar extends Component {
     return(
       <aside className= {classMenu}>
         <div
+          role = "button"
+          aria-pressed="false"
           onClick={ this.toggleMenu }
-          className="menu-icon"></div>
+          className="menu-icon"
+          tabIndex="1">
+        </div>
         <h4 className = "sidebar-title"> Search a place or a monument</h4>
         <SearchPlace
           query = { query}
