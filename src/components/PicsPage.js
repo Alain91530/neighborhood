@@ -42,8 +42,8 @@ class PicsPage extends Component {
     let pics = this.props.pics;
     let pageTitle;
     /**
-     * Handle the error case of no place selectec when user click the
-     * back arrow of the browser, and set a defaul title and no pic image
+     * Handle the error case of no place selected when user click the
+     * back arrow of the browser, and set a default title and no pic image
      */
     if (selectedId!==-1) {
       pageTitle=searchedPoints.filter( point => (selectedId===point.id))[0];
@@ -60,12 +60,11 @@ class PicsPage extends Component {
         <Link to =  '/' className = "back-to-map">
           <p>Back to map</p>
         </Link>
-
         <div className="pics-container">
           <h2 className="pics-title">Flickr's photos about: {pageTitle.translatedTitle}</h2>
           {pics.map((pic) =>
             <img
-              tabIndex="1"
+              tabIndex="0"
               className="pic-of-place"
               key={pic.key}
               src={pic.url}

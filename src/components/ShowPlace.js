@@ -1,6 +1,15 @@
-import React, { Component } from 'react'; // eslint-disable-line no-unused-vars
+/* eslint-disable */
+/**
+ * @description import React Component and Proptypes
+ */
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+/* eslint-enable */
 
+/**
+ * @description component to show a pic of a selected place
+ * @type { pics: array }
+ */
 class ShowPlace extends Component {
 
   static propTypes = {
@@ -11,7 +20,6 @@ class ShowPlace extends Component {
     const pics=this.props.pics;
 
     return (
-
       <div className="pic-container">
         {(pics.length!==0) && (<img tabIndex= "0" className="pic-of-place" src={pics[0].url} alt={pics[0].alt} />)}
       </div>

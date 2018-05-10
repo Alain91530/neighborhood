@@ -1,13 +1,24 @@
 /* eslint-disable */
+
+/**
+ * @description import React, Component and Proptypes
+ */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 /* eslint-enable */
 
+/**
+ * @description component to search places
+ * @type { updateQuery: function }
+ * @type { query: string }
+ * @type { ariaHidden: boolean }
+ */
 class SearchPlace extends Component {
 
   static propTypes = {
     updateQuery: PropTypes.func.isRequired,
-    query: PropTypes.string.isRequired
+    query: PropTypes.string.isRequired,
+    ariaHidden: PropTypes.bool.isRequired
   }
 
 

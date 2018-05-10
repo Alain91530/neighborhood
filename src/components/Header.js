@@ -1,8 +1,16 @@
+/**
+ * @description import React and component
+ */
 import React, { Component } from 'react'; // eslint-disable-line no-unused-vars
 
+/**
+ * @description component to render the header
+ */
 class Header extends Component {
 
-
+/**
+ * @description render the header
+ */
   render() {
     return(
       <header className="header">

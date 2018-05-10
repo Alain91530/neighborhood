@@ -1,14 +1,38 @@
-import React, { Component } from 'react'; // eslint-disable-line no-unused-vars
-import { Link } from 'react-router-dom';  // eslint-disable-line no-unused-vars
+/* eslint-disable */
+/**
+ * @description import React, Component and PropTypes
+ */
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
-import SearchPlace from './SearchPlace';  // eslint-disable-line no-unused-vars
-import ListPlaces from './ListPlaces';    // eslint-disable-line no-unused-vars
-import ShowPlace from './ShowPlace';      // eslint-disable-line no-unused-vars
+/**
+ * @description import Link
+ */
+import { Link } from 'react-router-dom';
 
+/**
+ * @description import components
+ */
+import SearchPlace from './SearchPlace';
+import ListPlaces from './ListPlaces';
+import ShowPlace from './ShowPlace';
+/* eslint-ensable */
 
-
+/**
+ * @description component of the sidebar sliding menu
+ * @type { places: Array }
+ * @type { selectedId: Number}
+ * @type { query: string }
+ * @type { pics: Array }
+ * @type { updateQuery: function}
+ * @type { listElementClicked: function}
+ */
 class SideBar extends Component {
 
+/**
+ * @description set teh default state
+ * @type { menuOn: boolean}
+ */
   state = { menuOn: false }
 
   /**
@@ -19,6 +43,9 @@ class SideBar extends Component {
     this.setState({ menuOn: !menuOn});
   }
 
+  /**
+   * @description render the sidebar menu
+   */
   render() {
     const { menuOn } = this.state;
     const { places, pics, listElementClicked, updateQuery, query, selectedId } = this.props;

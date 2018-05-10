@@ -1,7 +1,18 @@
-import React, { Component } from 'react'; // eslint-disable-line no-unused-vars
+/* eslint-disable */
+
+/**
+ * @description import React, Component and PropTypes
+ */
+import React, { Component } from 'react'; 
 import PropTypes from 'prop-types';
+/* eslint-ensable*/
 
-
+/**
+ * @description component to render the list of places in accordance with
+ * the query
+ * @type { places: array }
+ * @type { listElementClicked: function }
+ */
 class ListPlaces extends Component {
 
   static propTypes = {
@@ -9,6 +20,10 @@ class ListPlaces extends Component {
     listElementClicked: PropTypes.func.isRequired
   }
 
+/**
+ * @description function to have the selected place on top of list
+ * when clicking on markers in the map, in the list
+ */
   scrollList() {
     const firstPlace = Array.from(document.getElementsByClassName('place-listed'));
     const placeSelected = Array.from(document.getElementsByClassName('selected'));
@@ -16,6 +31,10 @@ class ListPlaces extends Component {
     if (placeSelected.length) placeSelected[0].scrollIntoView();
   }
 
+/**
+ * @description scroll the list each time the component is mounted or
+ * updated
+ */
   componentDidMount() {
     this.scrollList();
   }
@@ -24,6 +43,9 @@ class ListPlaces extends Component {
     this.scrollList();
   }
 
+  /**
+   * @description render the list of places
+   */
   render() {
     const { places, listElementClicked, selectedId } = this.props;
     let placesListed=[];
@@ -42,9 +64,9 @@ class ListPlaces extends Component {
           (place.id===selectedId) ? placeClass = 'place-listed selected' : placeClass= 'place-listed';
           return(
             <li
-            title= "Places of interest"
-            tabIndex= {this.props.tabIndex}
-            aria-hidden = {this.props.ariaHidden}
+              title= "Places of interest"
+              tabIndex= {this.props.tabIndex}
+              aria-hidden = {this.props.ariaHidden}
               key= {place.id}
               className={placeClass}
               onClick = { () => listElementClicked(place)}

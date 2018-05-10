@@ -192,7 +192,7 @@ class App extends Component {
 
   /**
    * @description render app component
-   * uses the react router to allow page changes
+   * uses the react router to allow pages change
    */
   render() {
     const { searchedPoints,
