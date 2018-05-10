@@ -1,18 +1,23 @@
-
+/**
+ * @description FEND Project 8 : Neighborhood
+ * @author Alain Cadenat
+ * @version 1.0
+ */
+/* eslint-disable */
 /**
  * @description import React and router
  */
-import React, { Component } from 'react';         // eslint-disable-line no-unused-vars
-import { BrowserRouter as Router, Route } from 'react-router-dom'; // eslint-disable-line no-unused-vars
+import React, { Component } from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 /**
  * @description import components
  */
-import {MyMap} from './MyMap';                    // eslint-disable-line no-unused-vars
-import SideBar from './SideBar';                  // eslint-disable-line no-unused-vars
-import Header from './Header';                    // eslint-disable-line no-unused-vars
-import Footer from './Footer';                    // eslint-disable-line no-unused-vars
-import PicsPage from './PicsPage';                // eslint-disable-line no-unused-vars
+import {MyMap} from './MyMap';
+import SideBar from './SideBar';
+import Header from './Header';
+import Footer from './Footer';
+import PicsPage from './PicsPage';
 
 /**
  * @description import json data
@@ -28,13 +33,13 @@ import escapeRegExp from 'escape-string-regexp';
 /**
  * @description import helper for flikr API
  */
-import {searchPicByPosition, getPics} from '../utils/FlickrAPI'; // eslint-disable-line no-unused-vars
+import {searchPicByPosition, getPics} from '../utils/FlickrAPI';
 
 /**
  * @description import css file for the app
  */
 import '../styles/App.css';
-
+/* eslint-enable */
 /**
  * @description main component
  */
@@ -67,7 +72,9 @@ class App extends Component {
 
   */
   componentDidMount() {
-
+    /**
+ * @attribution
+ */
     /** Source of data wikipedia kml file created with open data
      *  project of french government mérimée(historical monuments of
      *  France). Json convertion and translation by Alain Cadenat
@@ -85,7 +92,7 @@ class App extends Component {
   }
 
   /**
- * @description callback to close the Infobox and re-zoom and center the map
+ * @callback close the Infobox and re-zoom and center the map
  */
   infoBoxClosed=() => {
     this.setState({
@@ -96,7 +103,7 @@ class App extends Component {
   }
 
   /**
-   * @description callback to open the infoboxwhen marker or list is clicked
+   * @callback open the infobox when marker or list is clicked
    */
   markerClicked=(point) => {
     // Get the first pic and render it as quick as possible
@@ -142,20 +149,27 @@ class App extends Component {
   }
 
   /**
-   * @description callback to change the marker on pointer out
+   * @callback change the marker on pointer out
    */
   markerOut=() => {
     this.setState({mouseOverId: -1});
   }
 
+  /**
+  * @callback change the marker on pointer over
+  */
   markerOver=(point) => {
     this.setState({mouseOverId: point.id});
   }
+  /**
+  * @callback reset the query
+  */
   resetQuery =() => {
     this.updateQuery('');
   }
+
   /**
-   * @description callback to update the list according to query
+   * @callback to update the list according to query
    */
   updateQuery = (query) => {
     let searchedPoints = this.state.searchedPoints;
@@ -178,6 +192,7 @@ class App extends Component {
 
   /**
    * @description render app component
+   * uses the react router to allow page changes
    */
   render() {
     const { searchedPoints,
@@ -205,8 +220,7 @@ class App extends Component {
                   listElementClicked = { this.markerClicked }
                 />
 
-                <div className="map-container"
-  aria-label="Google Map of the area">
+                <div className="map-container">
                   <MyMap
                     mapCenter = { mapCenter }
                     zoom = { zoom }

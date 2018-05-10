@@ -1,11 +1,40 @@
+/* eslint-disable */
+/**
+ * @description import React and router
+ */
 import React from 'react';
 import { compose, withProps } from 'recompose';
-import { withScriptjs, withGoogleMap, GoogleMap, Marker } from 'react-google-maps';
-import { InfoBox } from 'react-google-maps/lib/components/addons/InfoBox'
-import MapStyle from '../data/MapStyle';
-import ShowPlace from './ShowPlace'
-import '../styles/App.css';
 
+/**
+ * @description import map components
+ */
+import { withScriptjs, withGoogleMap, GoogleMap, Marker } from 'react-google-maps';
+
+/**
+ * @description import app components
+ */
+import ShowPlace from './ShowPlace';
+import { InfoBox } from 'react-google-maps/lib/components/addons/InfoBox';
+
+/**
+ * @description import styles for the app and the map
+ */
+import MapStyle from '../data/MapStyle';
+import '../styles/App.css';
+/* eslint-enable */
+
+/**
+ * @description component to display the map, markers and infobox
+ * @type { mapCenter: Object }
+ * @type { zoom: Number }
+ * @type { placesOfInterest: Array }
+ * @type { selectedId: Number}
+ * @type { mouseOverId: Number}
+ * @type { pics: Array }
+ * @type { markerClicked: function}
+ * @type { markerOver: function}
+ * @type { markerOut: function}
+ */
 export const MyMap = compose(
 
   withProps({
@@ -21,15 +50,13 @@ export const MyMap = compose(
   return (
 
     <GoogleMap
-      aria-label="Herault's google map"
       zoom={props.zoom}
       center={props.mapCenter}
       defaultOptions={{ styles: MapStyle}}
       mapTypeId='terrain'
       onTilesLoaded={()=>{
         let map = document.querySelector('iframe');
-        map.setAttribute('title','Herault\'s google map')
-        console.log(map);
+        map.setAttribute('title','Herault\'s google map');
       }}
     > { props.placesOfInterest.map(point => {
         let markerUrl='icons/monument-historique.png';
@@ -56,11 +83,10 @@ export const MyMap = compose(
                   </div>
                 </div>
               </InfoBox>)}
-
           </Marker>
-        )})
+        );})
       }
     </GoogleMap>
-  )});
+  );});
 
 

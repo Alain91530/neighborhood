@@ -63,7 +63,7 @@ class PicsPage extends Component {
           <h2 className="pics-title">Flickr's photos about: {pageTitle.translatedTitle}</h2>
           {pics.map((pic) =>
             <img
-              tabindex="1"
+              tabIndex="1"
               className="pic-of-place"
               key={pic.key}
               src={pic.url}
