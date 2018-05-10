@@ -32,7 +32,11 @@ class ListPlaces extends Component {
     }
 
     return (
-      <ul className="list-of-places">
+      <ul className="list-of-places"
+      title= "Places of interest"
+      tabIndex= {this.props.tabIndex}
+      aria-label = 'Places of interest'
+      aria-hidden = {this.props.ariaHidden}>
         {placesListed.map(place => {
           let placeClass='';
           (place.id===selectedId) ? placeClass = 'place-listed selected' : placeClass= 'place-listed';

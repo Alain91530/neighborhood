@@ -11,17 +11,32 @@ class SideBar extends Component {
 
   state = { menuOn: false }
 
+  /**
+   * @callback Change the state of the menu hidden or not
+   */
   toggleMenu = () => {
     const menuOn = this.state.menuOn;
     this.setState({ menuOn: !menuOn});
   }
 
   render() {
-    const { places, pics, listElementClicked, updateQuery, query, selectedId } =this.props;
+    const { menuOn } = this.state;
+    const { places, pics, listElementClicked, updateQuery, query, selectedId } = this.props;
+
+    /**
+     * handle focus for the hidden menu sidebar
+     */
     let classMenu='';
-    (this.state.menuOn) ? classMenu='sidebar menu-open' : classMenu='sidebar menu-closed';
+    let tabIndex ='';
+    (menuOn) ? classMenu='sidebar menu-open' : classMenu='sidebar menu-closed';
+    (menuOn) ? tabIndex='0': tabIndex='-1';
+
+    /**
+     * render the menu sidebar
+     */
     return(
-      <aside className= {classMenu}>
+      <aside
+        className= {classMenu}>
         <button
           onClick={ this.toggleMenu }
           className="menu-icon"
@@ -30,10 +45,15 @@ class SideBar extends Component {
         </button>
         <h2 className = "sidebar-title"> Search a place or a monument</h2>
         <SearchPlace
+          ariaHidden = { !menuOn }
           query = { query}
           updateQuery = { updateQuery }
+          tabIndex = { tabIndex }
         />
         <ListPlaces
+          ariaHidden = { !menuOn }
+          tabIndex =  { tabIndex }
+          query = { query}
           places= {places}
           listElementClicked = { listElementClicked }
           selectedId = { selectedId }
