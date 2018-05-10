@@ -205,7 +205,8 @@ class App extends Component {
                   listElementClicked = { this.markerClicked }
                 />
 
-                <div className="map-container">
+                <div className="map-container"
+  aria-label="Google Map of the area">
                   <MyMap
                     mapCenter = { mapCenter }
                     zoom = { zoom }

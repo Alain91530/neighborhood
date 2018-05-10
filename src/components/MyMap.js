@@ -19,8 +19,10 @@ export const MyMap = compose(
 
 )((props) => {
   return (
+    <div
+    role="presentation"
+    aria-hidden="true">
     <GoogleMap
-    tabindex= "100"
       zoom={props.zoom}
       center={props.mapCenter}
       defaultOptions={{ styles: MapStyle}}
@@ -55,6 +57,7 @@ export const MyMap = compose(
         )})
       }
     </GoogleMap>
+    </div>
   )});
 
 

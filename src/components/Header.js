@@ -6,7 +6,7 @@ class Header extends Component {
   render() {
     return(
       <header className="header">
-        <h1 tabIndex="0" className="header-title">Herault's historic heritage places</h1>
+        <h1 tabIndex="1" className="header-title">Herault's historic heritage places</h1>
       </header>
     );
   }
