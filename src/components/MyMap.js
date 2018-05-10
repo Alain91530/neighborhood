@@ -19,14 +19,18 @@ export const MyMap = compose(
 
 )((props) => {
   return (
-    <div
-    role="presentation"
-    aria-hidden="true">
+
     <GoogleMap
+      aria-label="Herault's google map"
       zoom={props.zoom}
       center={props.mapCenter}
       defaultOptions={{ styles: MapStyle}}
       mapTypeId='terrain'
+      onTilesLoaded={()=>{
+        let map = document.querySelector('iframe');
+        map.setAttribute('title','Herault\'s google map')
+        console.log(map);
+      }}
     > { props.placesOfInterest.map(point => {
         let markerUrl='icons/monument-historique.png';
         if (point.id===props.selectedId) markerUrl='icons/monument-historique-selected.png';
@@ -57,7 +61,6 @@ export const MyMap = compose(
         )})
       }
     </GoogleMap>
-    </div>
   )});
 
 

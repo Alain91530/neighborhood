@@ -25,10 +25,10 @@ class SideBar extends Component {
         <button
           onClick={ this.toggleMenu }
           className="menu-icon"
-         >
+        >
           toggle menu
         </button>
-        <h4 className = "sidebar-title"> Search a place or a monument</h4>
+        <h2 className = "sidebar-title"> Search a place or a monument</h2>
         <SearchPlace
           query = { query}
           updateQuery = { updateQuery }
