@@ -13,7 +13,6 @@ class SearchPlace extends Component {
 
   render() {
     const { updateQuery, query, ariaHidden} = this.props;
-console.log(ariaHidden)
     return (
       <div
         id="place-search"

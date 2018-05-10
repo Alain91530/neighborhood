@@ -13,7 +13,7 @@ class ShowPlace extends Component {
     return (
 
       <div className="pic-container">
-        {(pics.length!==0) && (<img className="pic-of-place" src={pics[0].url} alt={pics[0].alt} />)}
+        {(pics.length!==0) && (<img tabIndex= "0" className="pic-of-place" src={pics[0].url} alt={pics[0].alt} />)}
       </div>
     );
   }

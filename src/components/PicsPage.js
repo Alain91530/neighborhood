@@ -1,31 +1,33 @@
+/* eslint-disable */
 /**
  * @description import React and React Router
  */
 
-import React, { Component } from 'react';         // eslint-disable-line no-unused-vars
-import { Link } from 'react-router-dom'; // eslint-disable-line no-unused-vars
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 /**
  * @description import components
  */
-import {MyMap} from './MyMap';                    // eslint-disable-line no-unused-vars
-import {searchPicByPosition, getPic} from '../utils/FlickrAPI'; // eslint-disable-line no-unused-vars
-import SideBar from './SideBar';                  // eslint-disable-line no-unused-vars
-import Header from './Header';                    // eslint-disable-line no-unused-vars
-import Footer from './Footer';                    // eslint-disable-line no-unused-vars
+import {MyMap} from './MyMap';
+import {searchPicByPosition, getPic} from '../utils/FlickrAPI';
+import SideBar from './SideBar';
+import Header from './Header';
+import Footer from './Footer';
 
 /**
  * @description import css file
  */
 import '../styles/App.css';
+/* eslint-enable */
 
 /**
- * @description Compoent to render the page with pics from Flickr
+ * @description Component to render the page with pics from Flickr
  */
 class PicsPage extends Component {
 
   /**
-   * @description Reset the query to render the default map 
+   * @description Reset the query to render the default map
    */
   componentWillUnmount() {
     this.props.resetQuery();
