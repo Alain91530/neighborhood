@@ -122,15 +122,15 @@
 .pics-container{
   display: flex;
   flex-flow: wrap;
-  height: 87vh;
   background-color: wheat;
   justify-content: center;
+  min-height: 87vh;
 }
 
 .pics-container .pic-of-place {
   overflow: hidden;
   max-height: 21vh;
-  max-width: 30%;
+  max-width: 100%;
   margin: 1%;
   border-color: rgb(27, 74, 128);
 }
@@ -200,5 +200,8 @@
   }
   .list-of-places {
     height: 35%;
+  }
+  .pics-container {
+    height: 100%;
   }
 }
