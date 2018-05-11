@@ -83,11 +83,16 @@ class App extends Component {
     let myPlaces= Places;
     const translatedPlaces= Translation;
 
+    // Add translation
     for (let i=0;i<myPlaces.length; i++) {
       myPlaces[i].translatedTitle = translatedPlaces[i].translatedTitle;
+    }
+    // Sort in alphabetical order
+    myPlaces.sort(sortBy('translatedTitle'));
+    // Add Index
+    for (let i=0;i<myPlaces.length; i++) {
       myPlaces[i].id = i;
     }
-    myPlaces.sort(sortBy('translatedTitle'));
     this.setState({
       pointsOfInterest: myPlaces,
       searchedPoints: myPlaces});
