@@ -33,9 +33,10 @@ class PicsPage extends Component {
 
   /**
    * @description Reset the query to render the default map
+   * resetQuery isn't called from an event so we pass it the right param.
    */
   componentWillUnmount() {
-    this.props.resetQuery();
+    this.props.resetQuery('Enter');
   }
 
   /**

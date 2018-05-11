@@ -54,7 +54,7 @@ class SideBar extends Component {
    */
   render() {
     const { menuOn } = this.state;
-    const { places, pics, listElementClicked, updateQuery, query, selectedId } = this.props;
+    const { places, pics, listElementClicked, updateQuery, query, selectedId, resetQuery } = this.props;
 
     /**
      * handle focus for the hidden menu sidebar
@@ -94,9 +94,21 @@ class SideBar extends Component {
         <ShowPlace
           pics = {pics}
         />
-        {(pics.length>1) && (<Link
-          className="pics-link"
-          to='/pics'> See more photos...</Link>
+        {(pics.length>1) && (
+          <div>
+            <Link
+              className="pics-link"
+              to='/pics'> See more photos...
+            </Link>
+            <p
+              className = "close-link"
+              role = "link"
+              tabIndex = "0"
+              onKeyUp = { (event) => resetQuery(event.key) }
+            >
+              Close photo
+            </p>
+          </div>
         )}
 
       </aside>

@@ -17,6 +17,12 @@
   border-radius: 2.5vh;
 }
 
+.close-link {
+  position: absolute;
+  bottom: 0px;
+  left: -100px;
+}
+
  .menu-icon {
   background-image: url("../icons/hamburger.png");
   background-color: rgb(27, 74, 128);

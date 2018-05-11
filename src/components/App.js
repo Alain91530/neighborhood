@@ -164,8 +164,8 @@ class App extends Component {
   /**
   * @callback reset the query
   */
-  resetQuery =() => {
-    this.updateQuery('');
+  resetQuery =(event) => {
+    if (event==='Enter') this.updateQuery('');
   }
 
   /**
@@ -216,6 +216,7 @@ class App extends Component {
                   query = {query}
                   selectedId= { selectedId }
                   updateQuery = { this.updateQuery }
+                  resetQuery = { this.resetQuery }
                   listElementClicked = { this.markerClicked }
                 />
 
