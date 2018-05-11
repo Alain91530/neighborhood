@@ -26,7 +26,6 @@ import '../styles/App.css';
 /**
  * @description component to display the map, markers and infobox
  * @type { mapCenter: Object }
- * @type { zoom: Number }
  * @type { placesOfInterest: Array }
  * @type { selectedId: Number}
  * @type { mouseOverId: Number}
@@ -47,10 +46,14 @@ export const MyMap = compose(
   withGoogleMap,
 
 )((props) => {
-  return (
+  const normalZoom = 9;
+  const placeZoom = 11;
+  let zoom;
+  (props.selectedId===-1) ? zoom = normalZoom : zoom = placeZoom;
 
+  return (
     <GoogleMap
-      zoom={props.zoom}
+      zoom={zoom}
       center={props.mapCenter}
       defaultOptions={{ styles: MapStyle}}
       mapTypeId='terrain'

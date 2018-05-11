@@ -48,7 +48,6 @@ class App extends Component {
 /**
  * @description set the default state
  * @type { mapCenter: Object }
- * @type { zoom: Number }
  * @type { pointsOfInterest: Array }
  * @type { searchedPoints: Array }
  * @type { query: String}
@@ -58,7 +57,6 @@ class App extends Component {
  */
   state = {
     mapCenter: { lat: 43.591236, lng: 3.258363 },
-    zoom: 9,
     pointsOfInterest : [],
     searchedPoints:[],
     query : '',
@@ -97,7 +95,6 @@ class App extends Component {
   infoBoxClosed=() => {
     this.setState({
       mapCenter: { lat: 43.591236, lng: 3.258363 },
-      zoom: 9,
       selectedId: -1,
       pics:[]});
   }
@@ -143,7 +140,6 @@ class App extends Component {
       .catch ((error) => {console.log(error);});
     this.setState({
       mapCenter: point.position,
-      zoom: 15,
       mouseOverId: -1,
       selectedId: point.id});
   }
@@ -199,7 +195,6 @@ class App extends Component {
       selectedId,
       mouseOverId,
       mapCenter,
-      zoom,
       pics,
       query } = this.state;
 
@@ -223,7 +218,6 @@ class App extends Component {
                 <div className="map-container">
                   <MyMap
                     mapCenter = { mapCenter }
-                    zoom = { zoom }
                     placesOfInterest={ searchedPoints }
                     selectedId={ selectedId }
                     pics = {pics}
