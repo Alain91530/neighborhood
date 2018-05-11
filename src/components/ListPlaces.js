@@ -1,9 +1,13 @@
-/* eslint-disable */
-
+/**
+ * @description FEND Project 8 : Neighborhood
+ * @description Searchable list of place component
+ * @author Alain Cadenat
+ * @version 1.0
+ *//* eslint-disable */
 /**
  * @description import React, Component and PropTypes
  */
-import React, { Component } from 'react'; 
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 /* eslint-ensable*/
 
@@ -11,12 +15,14 @@ import PropTypes from 'prop-types';
  * @description component to render the list of places in accordance with
  * the query
  * @type { places: array }
+ * @type { selectedId: number }
  * @type { listElementClicked: function }
  */
 class ListPlaces extends Component {
 
   static propTypes = {
     places: PropTypes.array.isRequired,
+    selectedId: PropTypes.number.isRequired,
     listElementClicked: PropTypes.func.isRequired
   }
 
@@ -64,12 +70,14 @@ class ListPlaces extends Component {
           (place.id===selectedId) ? placeClass = 'place-listed selected' : placeClass= 'place-listed';
           return(
             <li
+              aria-label= {`link ${place.translatedTitle}`}
               title= "Places of interest"
               tabIndex= {this.props.tabIndex}
               aria-hidden = {this.props.ariaHidden}
               key= {place.id}
               className={placeClass}
-              onClick = { () => listElementClicked(place)}
+              onClick = { (event) => listElementClicked(event, place)}
+              onKeyUp = { (event) => listElementClicked(event, place)}
             >
               <p>{place.translatedTitle}</p>
             </li>

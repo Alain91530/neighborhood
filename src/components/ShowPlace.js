@@ -1,3 +1,9 @@
+/**
+ * @description FEND Project 8 : Neighborhood
+ * @description component to display a photo
+ * @author Alain Cadenat
+ * @version 1.0
+ */
 /* eslint-disable */
 /**
  * @description import React Component and Proptypes

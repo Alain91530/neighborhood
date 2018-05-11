@@ -67,7 +67,6 @@ The poject uses 9 components
     - _selectedId_: number
     - _mouseOverId_: number
     - _mapCenter_: objet
-    - _zoom_: number
     - _pics_: array
     - _query_: string
   - props: none
@@ -94,7 +93,6 @@ The poject uses 9 components
   - state: none
   - props:
     - _mapCenter_: objet
-    - _zoom_: number
     - _placesOfInterest_: array
     - _selectedId_: number
     - _pics_: array

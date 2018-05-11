@@ -1,4 +1,9 @@
-/* eslint-disable */
+/**
+ * @description FEND Project 8 : Neighborhood
+ * @description component for the phot page
+ * @author Alain Cadenat
+ * @version 1.0
+ *//* eslint-disable */
 /**
  * @description import React and React Router
  */

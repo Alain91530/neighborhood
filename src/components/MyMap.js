@@ -1,3 +1,9 @@
+/**
+ * @description FEND Project 8 : Neighborhood
+ * @description map component
+ * @author Alain Cadenat
+ * @version 1.0
+ */
 /* eslint-disable */
 /**
  * @description import React and router
@@ -70,7 +76,7 @@ export const MyMap = compose(
             key={point.id}
             position = {point.position}
             icon = {markerUrl}
-            onClick = { () => props.markerClicked(point)}
+            onClick = { (event) => props.markerClicked(event,point)}
             onMouseOver = { () => props.markerOver(point)}
             onMouseOut = { () => props.markerOut()}
             title= { point.title }
