@@ -27,9 +27,10 @@ import Places from '../data/places';
 import Translation from '../data/translation';
 
 /**
- * @description import regexp
+ * @description import regexp and sort
  */
 import escapeRegExp from 'escape-string-regexp';
+import sortBy from 'sort-by';
 
 /**
  * @description import helper for flikr API
@@ -68,8 +69,8 @@ class App extends Component {
   /**
   * @description Get the json files containing the places of interest
   * @description French title is kept to search Flickr for better results.
-
   */
+
   componentDidMount() {
     /**
  * @attribution
@@ -81,10 +82,12 @@ class App extends Component {
 
     let myPlaces= Places;
     const translatedPlaces= Translation;
+
     for (let i=0;i<myPlaces.length; i++) {
       myPlaces[i].translatedTitle = translatedPlaces[i].translatedTitle;
       myPlaces[i].id = i;
     }
+    myPlaces.sort(sortBy('translatedTitle'));
     this.setState({
       pointsOfInterest: myPlaces,
       searchedPoints: myPlaces});
@@ -221,17 +224,28 @@ class App extends Component {
                 />
 
                 <div className="map-container">
-                  <MyMap
-                    mapCenter = { mapCenter }
-                    placesOfInterest={ searchedPoints }
-                    selectedId={ selectedId }
-                    pics = {pics}
-                    mouseOverId = { mouseOverId}
-                    markerClicked={this.markerClicked}
-                    markerOver={this.markerOver}
-                    markerOut={this.markerOut}
-                    infoBoxClosed={this.infoBoxClosed}
-                  />
+                  {(navigator.onLine)&&(
+                    <MyMap
+                      checkMapLoaded =  {this.checkMapLoaded}
+                      mapCenter = { mapCenter }
+                      zoom = { zoom }
+                      placesOfInterest={ searchedPoints }
+                      selectedId={ selectedId }
+                      pics = {pics}
+                      mouseOverId = { mouseOverId}
+                      markerClicked={this.markerClicked}
+                      markerOver={this.markerOver}
+                      markerOut={this.markerOut}
+                      infoBoxClosed={this.infoBoxClosed}
+                    />)}
+                  {(!navigator.onLine)&&(
+                    <div className="offline-map">
+                      <div className="offline-text">
+                        <h3>You seem to be offline, no interactive map available</h3>
+                        <p>You still can view the photos of the places you already visited</p>
+                        <p>by using the search menu</p>
+                      </div>
+                    </div>)}
                 </div>
               </div>
               <Footer />
