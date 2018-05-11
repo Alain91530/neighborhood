@@ -131,7 +131,9 @@ class App extends Component {
               });}
           else this.setState({pics: [{url: 'icons/no_pic.jpg', key: 0, alt: 'no photo available'}]});
         })
-        .catch ((error) => {console.log(error);});
+        .catch ((error) => {
+          this.setState({pics: [{url: 'icons/no_conection_pic.jpg', key: 0, alt: 'no photo available'}]})
+          console.log(error);});
 
 
       // Check and get the other pics to prepare works for PicsPage

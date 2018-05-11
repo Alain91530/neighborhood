@@ -17,8 +17,8 @@ let filesToCache = [
 /*  '../icons/add.svg',
   '../icons/arrow-back.svg',
   '../icons/hamburger.png',*/
-  'index.html'
- /* '/icons/no_pics.jpg'*/
+  'index.html',
+  '/icons/no_conection_pic.jpg'
 ];
 
 self.addEventListener('install', function(event) {
