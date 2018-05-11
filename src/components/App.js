@@ -1,5 +1,6 @@
 /**
  * @description FEND Project 8 : Neighborhood
+ * @description main component
  * @author Alain Cadenat
  * @version 1.0
  */
@@ -102,48 +103,51 @@ class App extends Component {
   /**
    * @callback open the infobox when marker or list is clicked
    */
-  markerClicked=(point) => {
+  markerClicked=(event, point) => {
+    // Event listener on keyup too, to allow keyboard navigation
+    // we need to check which key was pressed.
+    if (event.key==='Enter'||event.key===undefined) {
     // Get the first pic and render it as quick as possible
-    this.setState({pics: [{url: 'icons/image-loading.png',key: 0, alt: ''}]});
-    searchPicByPosition(point)
-      .then((response) => {
-        if (response.photos.total!=='0') {
-          let pics = getPics(response.photos.photo, 1);
-          Promise.all(pics)
-            .then(response => {
-              let firstPic = response.map((resp, index) =>(
-                {key: index,
-                  url: resp,
-                  alt: 'Flickr\'s photo around '+this.state.pointsOfInterest[point.id].translatedTitle}));
-              this.setState({pics: firstPic});
-            });}
-        else this.setState({pics: [{url: 'icons/no_pic.jpg', key: 0, alt: 'no photo available'}]});
-      })
-      .catch ((error) => {console.log(error);});
+      this.setState({pics: [{url: 'icons/image-loading.png',key: 0, alt: ''}]});
+      searchPicByPosition(point)
+        .then((response) => {
+          if (response.photos.total!=='0') {
+            let pics = getPics(response.photos.photo, 1);
+            Promise.all(pics)
+              .then(response => {
+                let firstPic = response.map((resp, index) =>(
+                  {key: index,
+                    url: resp,
+                    alt: 'Flickr\'s photo around '+this.state.pointsOfInterest[point.id].translatedTitle}));
+                this.setState({pics: firstPic});
+              });}
+          else this.setState({pics: [{url: 'icons/no_pic.jpg', key: 0, alt: 'no photo available'}]});
+        })
+        .catch ((error) => {console.log(error);});
 
 
-    // Check and get the other pics to prepare works for PicsPage
-    searchPicByPosition(point)
-      .then((response) => {
-        if (response.photos.total>1) {
+      // Check and get the other pics to prepare works for PicsPage
+      searchPicByPosition(point)
+        .then((response) => {
+          if (response.photos.total>1) {
 
-          let pics = getPics(response.photos.photo, 9);
-          Promise.all(pics)
-            .then(response => {
-              let firstPics = response.map((resp, index) =>(
-                {key: index,
-                  url: resp,
-                  alt: 'Flickr\'s photo around '+this.state.pointsOfInterest[point.id].translatedTitle}));
-              this.setState({pics: firstPics});
-            });}
-      })
-      .catch ((error) => {console.log(error);});
-    this.setState({
-      mapCenter: point.position,
-      mouseOverId: -1,
-      selectedId: point.id});
+            let pics = getPics(response.photos.photo, 9);
+            Promise.all(pics)
+              .then(response => {
+                let firstPics = response.map((resp, index) =>(
+                  {key: index,
+                    url: resp,
+                    alt: 'Flickr\'s photo around '+this.state.pointsOfInterest[point.id].translatedTitle}));
+                this.setState({pics: firstPics});
+              });}
+        })
+        .catch ((error) => {console.log(error);});
+      this.setState({
+        mapCenter: point.position,
+        mouseOverId: -1,
+        selectedId: point.id});
+    }
   }
-
   /**
    * @callback change the marker on pointer out
    */

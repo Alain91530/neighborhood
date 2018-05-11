@@ -1,3 +1,9 @@
+/**
+ * @description FEND Project 8 : Neighborhood
+ * @description Sliding sidebar menu component
+ * @author Alain Cadenat
+ * @version 1.0
+ */
 /* eslint-disable */
 /**
  * @description import React, Component and PropTypes
@@ -30,7 +36,7 @@ import ShowPlace from './ShowPlace';
 class SideBar extends Component {
 
 /**
- * @description set teh default state
+ * @description set the default state
  * @type { menuOn: boolean}
  */
   state = { menuOn: false }

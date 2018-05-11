@@ -1,5 +1,17 @@
+/**
+ * @description FEND Project 8 : Neighborhood
+ * @description Footer component
+ * @author Alain Cadenat
+ * @version 1.0
+ */
+/**
+ * @description import React and Component
+ */
 import React, { Component } from 'react'; // eslint-disable-line no-unused-vars
 
+/**
+ * @description component to render a fixed footer
+ */
 class Footer extends Component {
 
   render() {
