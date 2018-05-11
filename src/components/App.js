@@ -228,7 +228,6 @@ class App extends Component {
                     <MyMap
                       checkMapLoaded =  {this.checkMapLoaded}
                       mapCenter = { mapCenter }
-                      zoom = { zoom }
                       placesOfInterest={ searchedPoints }
                       selectedId={ selectedId }
                       pics = {pics}
