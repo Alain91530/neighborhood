@@ -1,3 +1,4 @@
+/*eslint no-console: ["error", { allow: ["warn", "error"] }] */
 /**
  * @description FEND Project 8 : Neighborhood
  * @description main component
@@ -131,9 +132,9 @@ class App extends Component {
               });}
           else this.setState({pics: [{url: 'icons/no_pic.jpg', key: 0, alt: 'no photo available'}]});
         })
-        .catch ((error) => {
+        .catch (() => {
           this.setState({pics: [{url: 'icons/no_conection_pic.jpg', key: 0, alt: 'no photo available'}]})
-          console.log(error);});
+          ;});
 
 
       // Check and get the other pics to prepare works for PicsPage
@@ -151,7 +152,7 @@ class App extends Component {
                 this.setState({pics: firstPics});
               });}
         })
-        .catch ((error) => {console.log(error);});
+        .catch ((error) => {console.warn(error);});
       this.setState({
         mapCenter: point.position,
         mouseOverId: -1,

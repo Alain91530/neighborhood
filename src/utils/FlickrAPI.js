@@ -1,3 +1,4 @@
+/*eslint no-console: ["error", { allow: ["warn", "error"] }] */
 const API = 'https://api.flickr.com/services/rest/';
 const APIKey = '5bf1311525022cec7b4c3371d88ae3b6';
 const picSearch = 'flickr.photos.search&format=json&nojsoncallback=1';
@@ -9,7 +10,7 @@ export const searchPicByPosition = ( point ) => {
   const url = `${request}&method=${picSearch}&lat=${point.position.lat}&lon=${point.position.lng}${text}`;
   return(fetch(url)
     .then (response =>response.json())
-    .catch(error => {console.log(error);})
+    .catch(error => {console.warn(error);})
   );};
 
 export const getPics = ( allPhotos, number ) => {

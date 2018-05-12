@@ -1,6 +1,13 @@
+
+/*eslint no-console: ["error", { allow: ["warn", "error"] }] */
 let filesToCache = [
   '../data/places.json',
   '../data/translation.json',
+  'images/offline_map.png',
+  '/icons/no_conection_pic.jpg',
+  '../icons/add.svg',
+  '../icons/arrow-back.svg',
+  '../icons/hamburger.png',
   '../components/App.js',
   '../components/Footer.js',
   '../components/Header.js',
@@ -13,12 +20,7 @@ let filesToCache = [
   './index.css',
   './registerPicsServiceWorker.js',
   '../styles/App.css',
-  'images/offline_map.png',
-/*  '../icons/add.svg',
-  '../icons/arrow-back.svg',
-  '../icons/hamburger.png',*/
-  'index.html',
-  '/icons/no_conection_pic.jpg'
+  'index.html'
 ];
 
 self.addEventListener('install', function(event) {
@@ -52,8 +54,8 @@ self.addEventListener('fetch', function(event) {
           return response;
         })
         // Fetch return an error, we catch it and display something
-        .catch(function (err,event) {
-          console.log('erreur:',err, event)
+        .catch(function (err) {
+          console.warn('error:',err);
         });
     }
   }));
