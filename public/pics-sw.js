@@ -1,10 +1,19 @@
 
+/**
+ * @description FEND Project 8 : Neighborhood
+ * @description service worker for a offline first serving
+ * @author Alain Cadenat
+ * @version 1.0
+ */
 /*eslint no-console: ["error", { allow: ["warn", "error"] }] */
+
+// cache static files on load
 let filesToCache = [
   '../data/places.json',
   '../data/translation.json',
   'images/offline_map.png',
-  '/icons/no_conection_pic.jpg',
+  'icons/no_conection_pic.jpg',
+  '../utils/FlickrAPI.js',
   '../icons/add.svg',
   '../icons/arrow-back.svg',
   '../icons/hamburger.png',
@@ -18,7 +27,6 @@ let filesToCache = [
   '../components/ShowPlace.js',
   '../components/SideBar.js',
   './index.css',
-  './registerPicsServiceWorker.js',
   '../styles/App.css',
   'index.html'
 ];

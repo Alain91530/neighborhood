@@ -82,7 +82,7 @@ When the user comes back to the home page query, and selected place are reset.
 
 ## Version
 
-- V 0.9 24/05/2018 Submission of project
+- V 0.9 05/13/2018 Submission of project
 
 ## Documentation
 

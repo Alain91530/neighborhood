@@ -12,6 +12,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 /* eslint-enable */
 
+
 /**
  * @description component to show a pic of a selected place
  * @type { pics: array }

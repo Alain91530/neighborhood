@@ -74,8 +74,8 @@ class App extends Component {
 
   componentDidMount() {
     /**
- * @attribution
- */
+    * Credits:
+    */
     /** Source of data wikipedia kml file created with open data
      *  project of french government mérimée(historical monuments of
      *  France). Json convertion and translation by Alain Cadenat
@@ -153,6 +153,7 @@ class App extends Component {
               });}
         })
         .catch ((error) => {console.warn(error);});
+
       this.setState({
         mapCenter: point.position,
         mouseOverId: -1,
@@ -172,6 +173,7 @@ class App extends Component {
   markerOver=(point) => {
     this.setState({mouseOverId: point.id});
   }
+
   /**
   * @callback reset the query
   */
@@ -230,7 +232,6 @@ class App extends Component {
                   resetQuery = { this.resetQuery }
                   listElementClicked = { this.markerClicked }
                 />
-
                 <div className="map-container">
                   {(navigator.onLine)&&(
                     <MyMap

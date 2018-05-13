@@ -1,6 +1,6 @@
 /**
  * @description FEND Project 8 : Neighborhood
- * @description component for the phot page
+ * @description component for the photo page
  * @author Alain Cadenat
  * @version 1.0
  *//* eslint-disable */
