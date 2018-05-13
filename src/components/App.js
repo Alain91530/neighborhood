@@ -89,7 +89,7 @@ class App extends Component {
       myPlaces[i].translatedTitle = translatedPlaces[i].translatedTitle;
     }
     // Sort in alphabetical order
-    myPlaces.sort(sortBy('translatedTitle'));
+    myPlaces.sort(sortBy('title'));
     // Add Index
     for (let i=0;i<myPlaces.length; i++) {
       myPlaces[i].id = i;
@@ -127,7 +127,7 @@ class App extends Component {
                 let firstPic = response.map((resp, index) =>(
                   {key: index,
                     url: resp,
-                    alt: 'Flickr\'s photo around '+this.state.pointsOfInterest[point.id].translatedTitle}));
+                    alt: 'Flickr\'s photo around '+this.state.pointsOfInterest[point.id].title}));
                 this.setState({pics: firstPic});
               });}
           else this.setState({pics: [{url: 'icons/no_pic.jpg', key: 0, alt: 'no photo available'}]});
@@ -148,7 +148,7 @@ class App extends Component {
                 let firstPics = response.map((resp, index) =>(
                   {key: index,
                     url: resp,
-                    alt: 'Flickr\'s photo around '+this.state.pointsOfInterest[point.id].translatedTitle}));
+                    alt: 'Flickr\'s photo around '+this.state.pointsOfInterest[point.id].title}));
                 this.setState({pics: firstPics});
               });}
         })
@@ -195,7 +195,7 @@ class App extends Component {
     this.setState({query});
     if ( query ) {
       const match = new RegExp( escapeRegExp( query ), 'i' );
-      searchedPoints = pointsOfInterest.filter( point => match.test( point.translatedTitle ) );
+      searchedPoints = pointsOfInterest.filter( point => match.test( point.title ) );
     }
     else {
       searchedPoints = pointsOfInterest;

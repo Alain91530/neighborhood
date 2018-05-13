@@ -86,7 +86,7 @@ export const MyMap = compose(
                 onCloseClick={ () => props.infoBoxClosed()} >
                 <div className="info-point" tabIndex='0'>
                   <div className="info-title" >
-                    <p>{ point.translatedTitle }</p>
+                    <p>{ point.title }</p>
                     <ShowPlace
                       pics = {props.pics} />
                   </div>

@@ -70,7 +70,7 @@ class ListPlaces extends Component {
           (place.id===selectedId) ? placeClass = 'place-listed selected' : placeClass= 'place-listed';
           return(
             <li
-              aria-label= {`link ${place.translatedTitle}`}
+              aria-label= {`link ${place.title}`}
               title= "Places of interest"
               tabIndex= {this.props.tabIndex}
               aria-hidden = {this.props.ariaHidden}
@@ -79,7 +79,7 @@ class ListPlaces extends Component {
               onClick = { (event) => listElementClicked(event, place)}
               onKeyUp = { (event) => listElementClicked(event, place)}
             >
-              <p>{place.translatedTitle}</p>
+              <p>{place.title}</p>
             </li>
           );})}
       </ul>

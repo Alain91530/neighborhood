@@ -64,10 +64,10 @@ class PicsPage extends Component {
       <div className="pics-page">
         <Header />
         <Link to =  '/' className = "back-to-map">
-          <p>Back to map</p>
+          <p>retour à la carte</p>
         </Link>
         <div className="pics-container">
-          <h2 className="pics-title">Flickr's photos about: {pageTitle.translatedTitle}</h2>
+          <h2 className="pics-title">Photos Flickr's à coté de: {pageTitle.translatedTitle}</h2>
           {pics.map((pic) =>
             <img
               tabIndex="0"

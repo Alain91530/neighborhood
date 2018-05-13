@@ -76,7 +76,7 @@ class SideBar extends Component {
         >
           toggle menu
         </button>
-        <h2 className = "sidebar-title"> Search a place or a monument</h2>
+        <h2 className = "sidebar-title"> Rechercher un lieu ou un monument</h2>
         <SearchPlace
           ariaHidden = { !menuOn }
           query = { query}
@@ -98,7 +98,7 @@ class SideBar extends Component {
           <div>
             <Link
               className="pics-link"
-              to='/pics'> See more photos...
+              to='/pics'> Plus de photos...
             </Link>
             <p
               className = "close-link"
@@ -106,7 +106,7 @@ class SideBar extends Component {
               tabIndex = "0"
               onKeyUp = { (event) => resetQuery(event.key) }
             >
-              Close photo
+              Fermer la photo
             </p>
           </div>
         )}
