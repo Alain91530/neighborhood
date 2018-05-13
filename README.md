@@ -5,13 +5,13 @@
 
 ![screen capture of the app](./public/images/neighborhood.jpg)
 
-The project show a map with markers on historical heritage places of Herault, a south of France county.
+The project show a map with markers on historical heritage places of Herault, a south of France territory.
 The user can click on marker to display a pic coming from Flickr taken around that place. He also can show a sidebar with a text input and a list of the places.  
 The list and the markers are shown in accordance of the places matching the query.
 
 The project is responsive and usable on modern device and it passes [aXe](https://www.deque.com/axe/) accessiblity audit except 3 issues in Google map iframe where no corrective action can be taken.
 
-A service worker is installed and a cache-first rendering is used allowing an offline use.
+A service worker is installed and a offline-first rendering is used allowing an offline use.
 
 ## Getting Started
 
@@ -19,15 +19,7 @@ A service worker is installed and a cache-first rendering is used allowing an of
 
 To run the project you need an ES5 compliant browser  
 To install the project you will need npm, [visit npm page to install it](https://www.npmjs.com/) if needed.
-The project is created with create-ract-app so all dependencies will be added.These specific dependencies are:
-
-- prop-types
-- sort-by
-- react-router-dom
-- escape-string-regexp
-- sort-by
-- recompose
-- react-google-map ([follow this link](https://tomchentw.github.io/react-google-maps/#introduction) for documentation)
+The project is created with create-ract-app so all dependencies will be added.
 
 ### Installing
 
@@ -41,18 +33,56 @@ The project is created with create-ract-app so all dependencies will be added.Th
   - Linux: `"start": "PORT=XXXX react-scripts start"`
   - Windows: `"start": "set PORT=XXXX && react-scripts start"` where XXXX is the port you want
 
-Or just use the [live app here]().
+Or just use the [live app here](www.depannum.fr/neighborhood).
+
+### Dependencies
+
+- prop-types
+- sort-by
+- react-router-dom
+- escape-string-regexp
+- sort-by
+- recompose
+- react-google-map ([follow this link](https://tomchentw.github.io/react-google-maps/#introduction) for documentation)
 
 ### Usage
+![screen capture of the app](./public/images/map.png)
 
-The home page display your books on 3 shelves, each book with, if available, a cover miniature, its title and its author(s).
-User can open a dropdown menu on each book allowing him to change it of shelf (category). The book will then move on the screen to go in the adequate category.  
-He can also view more details about the book by clicking the button at the top of each book. This will navigate him to a detailed page with some more information if available in the database and a link to the Google Books page of the selected book.  
-At the bottom of the page the user can click on a "plus" link wich will open a seach page where he can find new books. Books will appear instantly while he types the query for the search.
+The home page display a full screen map of the french territory of Herault. Markers are historical hetitages places comming from the french opendata project [Merimée](http://traduction.culturecommunication.gouv.fr/url/Result.aspx?to=en&url=http%3A%2F%2Fwww.culture.gouv.fr%2FEspace-documentation%2FBases-de-donnees%2FMerimee-consultable-depuis-le-moteur-Collections).
+The User can then get pictures taken around this places.
+
+Photos are fetched with the Flickr API. They sometimes may not be relevant despite the sort made on Flickr's search. It relies only on how the photo was documented by the user of Flickr. The search is made in french to get as many results as possible and with the followong criteria to be as relevent as possible:
+
+- Localisation (latidude and longitude)
+- free text search using the french title of the place. generic terms like hotel, house, etc... are replaced with monument for more relevance.
+- public tag true
+- isfriend tag false
+- isfamily tag false
+
+See Flicker's API documentation for more details).
+
+The number of markers is quite big (more than 3 hundred), in order to help the user he can search for specifics kind of monuments or places. He can open a search menu by clicking on the hamburger menu icon to slide a search menu in.
+
+![screen capture of the app](./public/images/query.png)
+
+On this menu, he will find a text search input and a list of places. He can filter the places listed by entering a query in the search input when he does so the list and the markers are filtered according to the query.
+
+![screen capture of the app](./public/images/infobox.png)
+
+User can see the photos by:
+
+- Clicking on a marker: An info window opens in the map showing the first pic if any. The map is zoomed to a closer view of the placed cliked and centered on it.If the sidebar search menu is open, the list of places is scrolled to have this place on top of the part of the list which is diplayed, the first pic is shown under this link with a link to see more photos if any.
+- Clicking on an item in the list in the side bar menu if it is open. This action have the same effect as clicking on a marker and the info window in the map is opened too.
+
+![screen capture of the app](./public/images/picspage.png)
+
+Clicking on the "more photos" link when available leads to a new page with up to 9 photos (depending on what is found on Flickr).
+
+When the user comes back to the home page query, and selected place are reset.
 
 ## Version
 
-- V 1.0 24/04/2018 Submission of project
+- V 0.9 24/05/2018 Submission of project
 
 ## Documentation
 
@@ -87,7 +117,7 @@ The poject uses 9 components
     - _places_ : array
     - _listElementClicked_: function (callback function when an element of the list is clicked)
     - _selectedId_: number
-  - Route:
+  - Route:   - Route: no specific route inherited from App ('/').
 
 - __MyMap__: display a map using Google map Api
   - state: none
@@ -144,7 +174,7 @@ The poject uses 9 components
 
 FilckrAPI.js is a file of util asynchronous functions used to call the Flickr API:
 
-- searchPicsByPosition: receice an object describing a point of interest and return array containing the first page of public photos around its position.
+- searchPicsByPosition: receive an object describing a point of interest and return an array containing the first page of public photos around its position.
 - getPics: recieve an array of search results and a number max of photos wanted and return an array of blobs.
 - getBlob: recieve an url and return the blob located at this url.
 
@@ -218,6 +248,10 @@ Check [Flickers API documentation](https://www.flickr.com/services/api/) for det
 ## Author
 
 - **Alain Cadenat**
+
+## Contributions
+
+Contributions to enhance the project are welcome
 
 ## License
 
