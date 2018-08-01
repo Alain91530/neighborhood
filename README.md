@@ -41,7 +41,6 @@ Or just use the [live app here](www.depannum.fr/neighborhood).
 - sort-by
 - react-router-dom
 - escape-string-regexp
-- sort-by
 - recompose
 - react-google-map ([follow this link](https://tomchentw.github.io/react-google-maps/#introduction) for documentation)
 
